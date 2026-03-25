@@ -40,13 +40,6 @@ const Login = () => {
           }
         `}
       </style>
-      {/* BACKGROUND IMAGE */}
-      <div className="bg-image--left" style={{ position: 'fixed', left: 0, bottom: 0, opacity: 0.5, zIndex: -1 }}>
-        <img src="https://seclab.ptit.edu.vn/2020/images/bg_left.png" alt="" />
-      </div>
-      <div className="bg-image--right" style={{ position: 'fixed', right: 0, top: 0, opacity: 0.5, zIndex: -1 }}>
-        <img src="https://seclab.ptit.edu.vn/2020/images/bg_right.png" alt="" />
-      </div>
 
       <div className="container-fluid-login">
         <div className="login">

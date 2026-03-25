@@ -349,15 +349,27 @@ td .status-wa {
     padding: 32px 16px;
     position: relative;
     overflow: hidden;
+    background-color: #070b14;
+}
 
-    background:
-        radial-gradient(circle at 20% 20%, rgba(220, 38, 38, 0.12) 0%, transparent 28%),
-        radial-gradient(circle at 80% 10%, rgba(79, 140, 255, 0.10) 0%, transparent 24%),
-        radial-gradient(circle at 50% 100%, rgba(56, 189, 248, 0.06) 0%, transparent 30%),
-        linear-gradient(135deg, #070b14 0%, #0b1020 45%, #0f172a 100%);
+.container-fluid-login::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 110%;
+    height: 110%;
+    transform: translate(-50%, -50%);
+    background-image: url('https://www.consultancy.eu/media/ranking-details/EU/cyber-security.webp');
+    background-size: cover;
+    background-position: center;
+    filter: blur(8px) brightness(0.35);
+    z-index: 0;
 }
 
 .login {
+    position: relative;
+    z-index: 10;
     width: 100%;
     display: flex;
     align-items: center;
