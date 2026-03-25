@@ -48,7 +48,7 @@ const ChangePassword = () => {
   return (
     <div style={{ padding: '2rem', display: 'flex', gap: '2rem', minHeight: 'calc(100vh - 80px)', background: '#0b1020' }}>
       <SettingsSidebar active="password" />
-      
+
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start', paddingTop: '1rem' }}>
         <div style={{
           background: 'linear-gradient(180deg, #1a1b26 0%, #12131a 100%)',
@@ -82,7 +82,7 @@ const ChangePassword = () => {
             color: '#fff',
             fontFamily: 'var(--font-display)'
           }}>Đổi mật khẩu</h1>
-          
+
           <p style={{
             color: 'var(--text-muted)',
             fontSize: '0.9rem',
@@ -204,7 +204,7 @@ const ChangePassword = () => {
                         height: '3px',
                         flex: 1,
                         borderRadius: '10px',
-                        background: step <= strength 
+                        background: step <= strength
                           ? (strength <= 2 ? '#ff4d6d' : (strength === 3 ? '#fbbf24' : '#10b981'))
                           : '#242533'
                       }}
@@ -309,33 +309,6 @@ const ChangePassword = () => {
           </div>
         </div>
 
-        {/* Security Tip Footer */}
-        <div style={{
-          marginTop: '4rem',
-          maxWidth: '450px',
-          display: 'flex',
-          gap: '12px',
-          color: 'var(--text-muted)',
-          fontSize: '0.85rem',
-          lineHeight: '1.5'
-        }}>
-          <div style={{ 
-            width: '20px', 
-            height: '20px', 
-            borderRadius: '50%', 
-            background: '#7c3aed', 
-            display: 'flex', 
-            alignItems: 'center', 
-            justifyContent: 'center',
-            flexShrink: 0,
-            marginTop: '2px'
-          }}>
-            <Info size={14} color="#fff" />
-          </div>
-          <p style={{ margin: 0 }}>
-            Security tip: Choose a password with at least 12 characters, including numbers, symbols, and a mix of uppercase and lowercase letters.
-          </p>
-        </div>
       </div>
     </div>
   );
