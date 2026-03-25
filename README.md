@@ -94,4 +94,32 @@ export default defineConfig({
 
 ---
 
+## 🚀 Hướng dẫn Deploy dự án miễn phí
+
+Vì dự án đã được kết nối với GitHub, bạn có thể dễ dàng đưa ứng dụng lên mạng bằng một trong hai dịch vụ phổ biến nhất hiện nay:
+
+### Phương án 1 — Vercel (Khuyên dùng)
+
+1.  Truy cập [vercel.com](https://vercel.com) và đăng nhập bằng tài khoản **GitHub**.
+2.  Nhấn nút **"Add New"** > **"Project"**.
+3.  Tìm repository `ptit-cyber-portal` và nhấn **"Import"**.
+4.  Ở phần **Build & Development Settings**, Vercel sẽ tự động nhận diện dự án Vite:
+    *   Framework Preset: `Vite`
+    *   Build Command: `npm run build`
+    *   Output Directory: `dist`
+5.  Nhấn **"Deploy"**. Chờ khoảng 1-2 phút, bạn sẽ có một đường dẫn `.vercel.app` để truy cập.
+
+### Phương án 2 — Netlify
+
+1.  Truy cập [netlify.com</a> và đăng nhập bằng **GitHub**.
+2.  Nhấn **"Add new site"** > **"Import an existing project"**.
+3.  Chọn **GitHub** và cấp quyền truy cập repository.
+4.  Cấu hình tương tự: Build command là `npm run build`, Publish directory là `dist`.
+5.  Nhấn **"Deploy site"**.
+
+> 💡 **Lưu ý về Routing:** Dự án đã có sẵn file `vercel.json` và `_redirects` để đảm bảo khi bạn load lại trang hoặc truy cập trực tiếp các đường dẫn (ví dụ: `/history`), hệ thống sẽ không bị lỗi 404.
+
+---
+
 > 💡 **Gợi ý:** Nếu gặp lỗi sau khi pull code mới, hãy chạy lại `npm install` trước khi `npm run dev`.
+
