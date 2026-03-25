@@ -4,17 +4,42 @@ import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (username) {
-      navigate('/');
+    if (!username || !password) {
+      setError('Vui lòng nhập đầy đủ tên đăng nhập và mật khẩu.');
+      return;
     }
+    setError('');
+    navigate('/');
   };
 
   return (
     <>
+      <style>
+        {`
+          .error-message {
+            background: rgba(255, 77, 109, 0.1);
+            border: 1px solid #ff4d6d;
+            color: #ff4d6d;
+            padding: 0.8rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: fadeIn 0.3s ease;
+          }
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+        `}
+      </style>
       {/* BACKGROUND IMAGE */}
       <div className="bg-image--left" style={{ position: 'fixed', left: 0, bottom: 0, opacity: 0.5, zIndex: -1 }}>
         <img src="https://seclab.ptit.edu.vn/2020/images/bg_left.png" alt="" />
@@ -40,6 +65,12 @@ const Login = () => {
             <div className="row">
               <div className="col">
                 <form onSubmit={handleLogin} className="login__main__form">
+                  {error && (
+                    <div className="error-message">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                      {error}
+                    </div>
+                  )}
                   <label htmlFor="login__user">Tài khoản</label>
                   <input
                     type="text"
@@ -47,7 +78,10 @@ const Login = () => {
                     id="login__user"
                     className={username ? "input--active" : ""}
                     value={username}
-                    onChange={(e) => setUsername(e.target.value)}
+                    onChange={(e) => {
+                      setUsername(e.target.value);
+                      if (error) setError('');
+                    }}
                     autoFocus
                   />
                   <label htmlFor="login__pw">Mật khẩu</label>
@@ -57,7 +91,10 @@ const Login = () => {
                     id="login__pw"
                     className={password ? "input--active" : ""}
                     value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      if (error) setError('');
+                    }}
                   />
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: '1rem' }}>
                     <div className="checkbox__login" style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
