@@ -27,16 +27,46 @@ const mockHistory = [
 
 const History = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [filterStatus, setFilterStatus] = useState('Tất cả');
+  const [filterTask, setFilterTask] = useState('');
   const itemsPerPage = 20;
 
-  const totalPages = Math.ceil(mockHistory.length / itemsPerPage);
+  const filteredData = mockHistory.filter(h => {
+    const matchStatus = filterStatus === 'Tất cả' || h.status === filterStatus;
+    const matchTask = h.task.toLowerCase().includes(filterTask.toLowerCase());
+    return matchStatus && matchTask;
+  });
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentItems = mockHistory.slice(startIndex, startIndex + itemsPerPage);
+  const currentItems = filteredData.slice(startIndex, startIndex + itemsPerPage);
 
   return (
     <div style={{ padding: '2rem', display: 'flex', gap: '2rem', maxWidth: '1400px', margin: '0 auto' }}>
       <div style={{ flex: 1 }}>
-        <h2 style={{ marginBottom: '1.5rem' }}>Lịch sử nộp bài cá nhân</h2>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
+          <h2 style={{ margin: 0 }}>Lịch sử nộp bài cá nhân</h2>
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <input
+              type="text"
+              placeholder="Tìm bài tập..."
+              value={filterTask}
+              onChange={e => { setFilterTask(e.target.value); setCurrentPage(1); }}
+              style={{ width: '200px', padding: '8px 12px' }}
+            />
+            <select
+              value={filterStatus}
+              onChange={e => { setFilterStatus(e.target.value); setCurrentPage(1); }}
+              style={{ width: '160px', padding: '8px 12px' }}
+            >
+              <option value="Tất cả">Tất cả trạng thái</option>
+              <option value="AC">AC - Correct</option>
+              <option value="WA">WA - Wrong</option>
+              <option value="WFN">WFN - Format</option>
+              <option value="RTE">RTE - Error</option>
+            </select>
+          </div>
+        </div>
 
         <table style={{ width: '100%' }}>
           <thead>
@@ -103,7 +133,7 @@ const History = () => {
         <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
           <li><strong style={{ color: '#00cc66' }}>AC</strong>: Accepted (Chính xác)</li>
           <li><strong style={{ color: '#ff3366' }}>WA</strong>: Wrong Answer (Sai kết quả)</li>
-          <li><strong style={{ color: '#ffaa00' }}>WFN</strong>: Wrong Flag Format (Sai định dạng cờ)</li>
+          <li><strong style={{ color: '#ffaa00' }}>WFN</strong>: Wrong File Name (Sai tên tệp)</li>
           <li><strong style={{ color: '#6b4cff' }}>CPY</strong>: Copy (Nghi vấn sao chép)</li>
           <li><strong style={{ color: '#acaab1' }}>CE</strong>: Compile Error (Lỗi dịch)</li>
           <li><strong style={{ color: '#ff8d90' }}>RTE</strong>: Run Time Error (Lỗi thực thi)</li>

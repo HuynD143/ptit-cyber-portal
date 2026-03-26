@@ -3,6 +3,7 @@ import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
 
 const MainLayout = () => {
   const [profileOpen, setProfileOpen] = useState(false);
+  const [avatar, setAvatar] = useState(localStorage.getItem('user_avatar') || 'https://seclab.ptit.edu.vn/2020/images/avt.png');
   const location = useLocation();
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
@@ -15,7 +16,17 @@ const MainLayout = () => {
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
+
+    // Listen for avatar updates
+    const handleAvatarUpdate = () => {
+      setAvatar(localStorage.getItem('user_avatar') || 'https://seclab.ptit.edu.vn/2020/images/avt.png');
+    };
+    window.addEventListener('avatarUpdate', handleAvatarUpdate);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      window.removeEventListener('avatarUpdate', handleAvatarUpdate);
+    };
   }, []);
 
   const closeDropdown = () => setProfileOpen(false);
@@ -56,13 +67,13 @@ const MainLayout = () => {
           {/* Profile Dropdown */}
           <div>
             <div className="nav__profile" style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-              <div className="nav__profile__img nav__lang" style={{ display: 'flex', alignItems: 'center', cursor: 'pointer' }}>
+              <div className="nav__profile__img nav__lang" style={{ display: 'center', alignItems: 'center', cursor: 'pointer' }}>
                 <img src="https://seclab.ptit.edu.vn/2020/images/VN.png" alt="VN" style={{ height: '24px' }} />
               </div>
 
               <div className="nav__profile__img nav__profile__user" ref={dropdownRef} style={{ position: 'relative' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '8px', cursor: 'pointer' }} onClick={() => setProfileOpen(!profileOpen)}>
-                  <img className="nav__profile__avatar" src="https://seclab.ptit.edu.vn/2020/images/avt.png" alt="Avatar" style={{ height: '32px', borderRadius: '50%' }} />
+                  <img className="nav__profile__avatar" src={avatar} alt="Avatar" style={{ height: '32px', borderRadius: '50%' }} />
                 </div>
 
                 {profileOpen && (

@@ -23,6 +23,28 @@ const EditProfile = () => {
     cmnd: '001099012345'
   });
 
+  const [avatar, setAvatar] = useState(localStorage.getItem('user_avatar') || 'https://seclab.ptit.edu.vn/2020/images/avt.png');
+  const fileInputRef = React.useRef(null);
+
+  const handleAvatarChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        alert('Dung lượng ảnh tối đa là 2MB!');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result;
+        setAvatar(base64String);
+        localStorage.setItem('user_avatar', base64String);
+        // Dispatch custom event to notify other components (e.g. Navbar)
+        window.dispatchEvent(new Event('avatarUpdate'));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     alert('Thông tin đã được cập nhật thành công!');
@@ -38,9 +60,21 @@ const EditProfile = () => {
         <form onSubmit={handleSubmit} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem' }}>
           
           <div style={{ gridColumn: '1 / -1', display: 'flex', alignItems: 'center', gap: '1.5rem', marginBottom: '1rem' }}>
-            <img src="https://seclab.ptit.edu.vn/2020/images/avt.png" alt="Avatar" style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--bg-surface-highest)' }} />
+            <img src={avatar} alt="Avatar" style={{ width: '80px', height: '80px', borderRadius: '50%', objectFit: 'cover', border: '2px solid var(--bg-surface-highest)' }} />
             <div>
-              <button type="button" className="button" style={{ padding: '8px 16px', fontSize: '0.9rem', marginBottom: '0.5rem' }}>Tải ảnh thẻ lên</button>
+              <input 
+                type="file" 
+                ref={fileInputRef} 
+                onChange={handleAvatarChange} 
+                accept="image/*" 
+                style={{ display: 'none' }} 
+              />
+              <button 
+                type="button" 
+                className="button" 
+                style={{ padding: '8px 16px', fontSize: '0.9rem', marginBottom: '0.5rem' }}
+                onClick={() => fileInputRef.current.click()}
+              >Tải ảnh thẻ lên</button>
               <p style={{ color: 'var(--text-muted)', margin: 0, fontSize: '0.85rem' }}>JPG, PNG hoặc GIF dung lượng tối đa 2MB.</p>
             </div>
           </div>

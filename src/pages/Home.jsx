@@ -4,12 +4,19 @@ import { CheckCircle2, PlayCircle, Lock } from 'lucide-react';
 
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
+  const [filterDifficulty, setFilterDifficulty] = React.useState('Tất cả độ khó');
+  const [filterSubCat, setFilterSubCat] = React.useState('Tất cả chủ đề');
+  const [searchQuery, setSearchQuery] = React.useState('');
+  
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
   const itemsPerPage = 12;
 
   const handlePageChange = (newPage) => {
     setSearchParams({ page: newPage });
   };
+
+  // Unique tags for the sub-category filter
+  const allSubCategories = ['Tất cả chủ đề', 'Web', 'Pwn', 'Crypto', 'Forensics', 'Reversing', 'Mobile', 'OS', 'Hardware', 'Network'];
 
   // 20 bài tập mock data
   const challenges = [
@@ -35,10 +42,17 @@ const Home = () => {
     { id: 20, title: 'Format String Vulnerability', tags: ['Pwn', 'Fmt'], difficulty: 'Trung bình', status: 'Pending' }
   ];
 
+  const filteredChallenges = challenges.filter(c => {
+    const matchSearch = c.title.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchDiff = filterDifficulty === 'Tất cả độ khó' || c.difficulty === filterDifficulty;
+    const matchSubCat = filterSubCat === 'Tất cả chủ đề' || c.tags.includes(filterSubCat);
+    return matchSearch && matchDiff && matchSubCat;
+  });
+
   // Pagination Logic
-  const totalPages = Math.ceil(challenges.length / itemsPerPage);
+  const totalPages = Math.ceil(filteredChallenges.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentItems = challenges.slice(startIndex, startIndex + itemsPerPage);
+  const currentItems = filteredChallenges.slice(startIndex, startIndex + itemsPerPage);
 
   const renderStatusIcon = (status) => {
     switch (status) {
@@ -68,8 +82,25 @@ const Home = () => {
             <option>Học kỳ 2 năm học 2025-2026</option>
             <option>An toàn và bảo mật hệ thống thông tin - INT1303-19</option>
           </select>
-          <input type="text" placeholder="Nhập từ khóa..." style={{ width: '250px' }} />
-          <select style={{ width: '150px' }}>
+          <input 
+            type="text" 
+            placeholder="Nhập từ khóa..." 
+            value={searchQuery}
+            onChange={(e) => { setSearchQuery(e.target.value); setSearchParams({page: '1'}); }}
+            style={{ width: '250px' }} 
+          />
+          <select 
+            value={filterSubCat}
+            onChange={(e) => { setFilterSubCat(e.target.value); setSearchParams({page: '1'}); }}
+            style={{ width: '150px' }}
+          >
+            {allSubCategories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
+          </select>
+          <select 
+            value={filterDifficulty}
+            onChange={(e) => { setFilterDifficulty(e.target.value); setSearchParams({page: '1'}); }}
+            style={{ width: '150px' }}
+          >
             <option>Tất cả độ khó</option>
             <option>Dễ</option>
             <option>Trung bình</option>

@@ -6,19 +6,19 @@ const generateStatusData = () => {
   const users = ['B23DCKH056', 'B22DCCN999', 'B22DCCN888', 'B22DCCN777', 'B23DCCN111', 'B23DCAT123', 'B23DCVT098', 'B21DCAT404'];
   const tasks = ['Warmup Web Exploitation', 'Buffer Overflow Master', 'SQLi Injection Lab', 'Packet Analysis Pro', 'Crackme Level 5'];
   const verdicts = ['AC', 'WA', 'WFN', 'CPY', 'CE', 'RTE'];
-  
+
   for (let i = 1; i <= 120; i++) {
-     const isHuy = i % 5 === 0;
-     data.push({
-        id: 10450 - i,
-        time: `2026-03-${Math.floor(Math.random()*20+1).toString().padStart(2, '0')} 10:${Math.floor(Math.random()*60).toString().padStart(2, '0')}:00`,
-        user: isHuy ? 'B23DCKH056' : users[Math.floor(Math.random() * users.length)],
-        task: tasks[Math.floor(Math.random() * tasks.length)],
-        type: Math.random() > 0.5 ? 'CTF' : 'Upload',
-        status: verdicts[Math.floor(Math.random() * verdicts.length)],
-        mem: Math.floor(Math.random() * 20) + ' MB',
-        exec: Math.floor(Math.random() * 500) + ' ms'
-     });
+    const isHuy = i % 5 === 0;
+    data.push({
+      id: 10450 - i,
+      time: `2026-03-${Math.floor(Math.random() * 20 + 1).toString().padStart(2, '0')} 10:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}:00`,
+      user: isHuy ? 'B23DCKH056' : users[Math.floor(Math.random() * users.length)],
+      task: tasks[Math.floor(Math.random() * tasks.length)],
+      type: Math.random() > 0.5 ? 'CTF' : 'Upload',
+      status: verdicts[Math.floor(Math.random() * verdicts.length)],
+      mem: Math.floor(Math.random() * 20) + ' MB',
+      exec: Math.floor(Math.random() * 500) + ' ms'
+    });
   }
   return data;
 };
@@ -39,7 +39,7 @@ const Status = () => {
   const currentItems = mockSubmissions.slice(startIndex, startIndex + itemsPerPage);
 
   const renderStatus = (s) => {
-    switch(s) {
+    switch (s) {
       case 'AC': return <span className="status-ac" style={{ color: '#00cc66' }}>AC - Accepted</span>;
       case 'WA': return <span className="status-wa" style={{ color: '#ff3366' }}>WA - Wrong Answer</span>;
       case 'WFN': return <span className="status-wa" style={{ color: '#ffaa00' }}>WFN - Wrong Flag Format</span>;
@@ -95,14 +95,14 @@ const Status = () => {
       {/* PAGINATION */}
       {totalPages > 1 && (
         <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem', marginTop: '2rem' }}>
-          <button 
+          <button
             disabled={currentPage === 1}
             onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-            style={{ 
-              padding: '8px 16px', background: 'var(--bg-surface)', border: '1px solid rgba(148,163,184,0.2)', color: currentPage === 1 ? 'var(--text-muted)' : 'var(--text-main)', cursor: currentPage === 1 ? 'not-allowed' : 'pointer', borderRadius: '8px' 
+            style={{
+              padding: '8px 16px', background: 'var(--bg-surface)', border: '1px solid rgba(148,163,184,0.2)', color: currentPage === 1 ? 'var(--text-muted)' : 'var(--text-main)', cursor: currentPage === 1 ? 'not-allowed' : 'pointer', borderRadius: '8px'
             }}
           >Trước</button>
-          
+
           {[...Array(totalPages)].map((_, idx) => {
             // Show first, last, and neighbors
             const p = idx + 1;
@@ -118,15 +118,28 @@ const Status = () => {
             return null;
           })}
 
-          <button 
+          <button
             disabled={currentPage === totalPages}
             onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-            style={{ 
-              padding: '8px 16px', background: 'var(--bg-surface)', border: '1px solid rgba(148,163,184,0.2)', color: currentPage === totalPages ? 'var(--text-muted)' : 'var(--text-main)', cursor: currentPage === totalPages ? 'not-allowed' : 'pointer', borderRadius: '8px' 
+            style={{
+              padding: '8px 16px', background: 'var(--bg-surface)', border: '1px solid rgba(148,163,184,0.2)', color: currentPage === totalPages ? 'var(--text-muted)' : 'var(--text-main)', cursor: currentPage === totalPages ? 'not-allowed' : 'pointer', borderRadius: '8px'
             }}
           >Tiếp</button>
         </div>
       )}
+
+      {/* RESULT STATUS LEGEND - FULL WIDTH AT BOTTOM */}
+      <div style={{ marginTop: '4rem', background: 'var(--bg-surface-elevated)', padding: '2rem', borderRadius: 'var(--radius-lg)', border: '1px solid rgba(148, 163, 184, 0.1)' }}>
+        <h3 style={{ marginTop: 0, marginBottom: '1.5rem', textAlign: 'center' }}>Các trạng thái kết quả</h3>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', textAlign: 'center', maxWidth: '1200px', margin: '0 auto' }}>
+          <div><strong style={{ color: '#00cc66' }}>AC</strong>: Accepted (Chính xác)</div>
+          <div><strong style={{ color: '#ff3366' }}>WA</strong>: Wrong Answer (Sai kết quả)</div>
+          <div><strong style={{ color: '#ffaa00' }}>WFN</strong>: Wrong File Name</div>
+          <div><strong style={{ color: '#6b4cff' }}>CPY</strong>: Copy (Nghi vấn copy)</div>
+          <div><strong style={{ color: '#94a3b8' }}>CE</strong>: Compile Error</div>
+          <div><strong style={{ color: '#ef4444' }}>RTE</strong>: Runtime Error</div>
+        </div>
+      </div>
     </div>
   );
 };

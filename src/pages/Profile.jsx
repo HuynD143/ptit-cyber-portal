@@ -10,6 +10,8 @@ const Profile = () => {
     { id: 'labs', label: '💻 Thực hành' },
   ];
 
+  const userAvatar = localStorage.getItem('user_avatar') || 'https://seclab.ptit.edu.vn/2020/images/avt.png';
+
   return (
     <div style={{ padding: '2rem', maxWidth: '1400px', margin: '0 auto', display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
       
@@ -27,7 +29,7 @@ const Profile = () => {
         boxShadow: 'var(--shadow-soft)'
       }}>
         <img 
-          src="https://seclab.ptit.edu.vn/2020/images/avt.png" 
+          src={userAvatar} 
           alt="Avatar" 
           style={{ width: '130px', height: '130px', borderRadius: '50%', objectFit: 'cover', marginBottom: '1rem', border: '4px solid var(--bg-surface-highest)', boxShadow: 'var(--shadow-ambient)' }} 
         />
