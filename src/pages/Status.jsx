@@ -128,14 +128,14 @@ const Status = () => {
         </div>
       )}
 
-      {/* RESULT STATUS LEGEND - FULL WIDTH AT BOTTOM */}
-      <div style={{ marginTop: '4rem', background: 'var(--bg-surface-elevated)', padding: '2rem', borderRadius: 'var(--radius-lg)', border: '1px solid rgba(148, 163, 184, 0.1)' }}>
+      {/* RESULT STATUS LEGEND - CENTERED WITH NARROW WIDTH */}
+      <div style={{ marginTop: '2rem', background: 'var(--bg-surface-elevated)', padding: '2rem', borderRadius: 'var(--radius-lg)', border: '1px solid rgba(148, 163, 184, 0.1)', maxWidth: '800px', margin: '8rem auto 2rem' }}>
         <h3 style={{ marginTop: 0, marginBottom: '1.5rem', textAlign: 'center' }}>Các trạng thái kết quả</h3>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', textAlign: 'center', maxWidth: '1200px', margin: '0 auto' }}>
-          <div><strong style={{ color: '#00cc66' }}>AC</strong>: Accepted (Chính xác)</div>
-          <div><strong style={{ color: '#ff3366' }}>WA</strong>: Wrong Answer (Sai kết quả)</div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', textAlign: 'center' }}>
+          <div><strong style={{ color: '#00cc66' }}>AC</strong>: Accepte</div>
+          <div><strong style={{ color: '#ff3366' }}>WA</strong>: Wrong Answer</div>
           <div><strong style={{ color: '#ffaa00' }}>WFN</strong>: Wrong File Name</div>
-          <div><strong style={{ color: '#6b4cff' }}>CPY</strong>: Copy (Nghi vấn copy)</div>
+          <div><strong style={{ color: '#6b4cff' }}>CPY</strong>: Copy</div>
           <div><strong style={{ color: '#94a3b8' }}>CE</strong>: Compile Error</div>
           <div><strong style={{ color: '#ef4444' }}>RTE</strong>: Runtime Error</div>
         </div>
