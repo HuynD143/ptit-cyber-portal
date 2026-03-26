@@ -296,19 +296,7 @@ const ChangePassword = () => {
               Đổi mật khẩu
             </button>
           </form>
-
-          <div style={{ textAlign: 'center', marginTop: '1.5rem' }}>
-            <Link
-              to="/profile"
-              style={{ color: 'var(--text-muted)', fontSize: '0.9rem', textDecoration: 'none' }}
-              onMouseOver={(e) => e.currentTarget.style.color = '#fff'}
-              onMouseOut={(e) => e.currentTarget.style.color = 'var(--text-muted)'}
-            >
-              Cancel and return
-            </Link>
-          </div>
         </div>
-
       </div>
     </div>
   );
