@@ -24,12 +24,14 @@ import JeoStatus from './pages/CTFJeopardy/JeoStatus';
 import JeoHistory from './pages/CTFJeopardy/JeoHistory';
 import CTFJeopardyDetail from './pages/CTFJeopardy/CTFJeopardyDetail';
 import TerminalFullScreen from './pages/Terminal/TerminalFullScreen';
+import ScrollToTop from './components/utils/ScrollToTop';
 
 import './assets/modern-theme.css'; // The new Digital Vault aesthetic
 
 function App() {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         {/* Auth Route */}
         <Route element={<AuthLayout />}>
