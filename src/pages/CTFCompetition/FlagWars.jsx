@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Target, Shield, Server, Activity, TerminalSquare, Flag, ExternalLink, ArrowLeft } from 'lucide-react';
 import TerminalWindow from '../../components/ui/TerminalWindow';
-import { attackDefenseTeams as teams, recentLogs } from '../../data/attackDefenseData';
+import { attackDefenseTeams as teams, recentLogs } from '../../data/ctfCompetitionData';
 
 const FlagWars = () => {
   const navigate = useNavigate();

@@ -1,45 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Target, Trophy, Clock, AlertTriangle, Flag } from 'lucide-react';
-
-const competitions = [
-  {
-    id: 'hack-day-2026',
-    title: 'Hack Day 2026',
-    status: 'LIVE',
-    type: 'PRIVATE',
-    start: '28 Mar, 08:00, 2026',
-    end: '29 Mar, 08:00, 2026',
-    duration: '24h',
-    theme: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(15, 23, 42, 1) 100%)',
-    iconColor: '#10b981',
-    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600&auto=format&fit=crop'
-  },
-  {
-    id: 'flag-wars',
-    title: 'Flag Wars',
-    status: 'LIVE',
-    type: 'PUBLIC',
-    start: '10 Apr, 10:00, 2026',
-    end: '12 Apr, 10:00, 2026',
-    duration: '48h',
-    theme: 'linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(15, 23, 42, 1) 100%)',
-    iconColor: '#f59e0b',
-    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600&auto=format&fit=crop'
-  },
-  {
-    id: 'ptit-cybergames-2026',
-    title: 'PTIT Cybergames 2026',
-    status: 'LIVE',
-    type: 'INTERNAL',
-    start: '01 May, 07:00, 2026',
-    end: '02 May, 19:00, 2026',
-    duration: '36h',
-    theme: 'linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(15, 23, 42, 1) 100%)',
-    iconColor: '#6366f1',
-    image: '/ptit-ctf-cover.png'
-  }
-];
+import { competitions } from '../../data/ctfCompetitionData';
 
 const CTFCompetition = () => {
   return (
@@ -106,9 +68,6 @@ const CTFCompetition = () => {
                   <span style={{ color: '#fff', fontSize: '0.75rem', fontWeight: 'bold', letterSpacing: '1px' }}>
                     {comp.type}
                   </span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'center', position: 'relative', zIndex: 1 }}>
-                  <Flag size={54} color="rgba(255,255,255,0.9)" />
                 </div>
               </div>
               
