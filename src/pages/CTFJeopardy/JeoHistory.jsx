@@ -15,7 +15,7 @@ const getPointsColor = (pts) => pts === 100 ? '#22c55e' : pts === 300 ? '#f59e0b
 const JeoHistory = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
-  
+
   const [filterTask, setFilterTask] = useState('');
   const [filterStatus, setFilterStatus] = useState('Tất cả trạng thái');
 

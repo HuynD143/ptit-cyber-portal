@@ -85,7 +85,7 @@ const allUsers = [
   { id: 'B23DCKH036', lastName: 'Phan Việt', firstName: 'Thành', points: 4500 },
   { id: 'B23DCKH056', lastName: 'Đặng Ngọc', firstName: 'Huy', points: 4000 },
   { id: 'B23DCCN111', lastName: 'Phạm Thị', firstName: 'D', points: 3800 },
-  ...Array.from({ length: 15 }, (_, i) => ({
+  ...Array.from({ length: 25 }, (_, i) => ({
     id: `B23DCCN${(112 + i).toString()}`,
     lastName: lastNames[(i + 2) % lastNames.length],
     firstName: firstNames[(i + 5) % firstNames.length],
@@ -93,7 +93,7 @@ const allUsers = [
   })),
 ];
 
-export const ctfLeaderboard = [...allUsers].sort((a, b) => b.points - a.points).slice(0, 15);
+export const ctfLeaderboard = [...allUsers].sort((a, b) => b.points - a.points).slice(0, 20);
 export const MY_ID = 'B23DCKH056';
 
 export const ctfChallengeDetails = {

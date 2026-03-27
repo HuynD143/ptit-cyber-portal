@@ -29,7 +29,7 @@ const CTFJeopardy = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
   const activeTab = 'challenges';
-  
+
   const [filterTitle, setFilterTitle] = useState('');
   const [filterDiff, setFilterDiff] = useState('Tất cả độ khó');
 
@@ -179,7 +179,7 @@ const CTFJeopardy = () => {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', padding: '1rem 1.25rem', borderBottom: '1px solid rgba(148,163,184,0.1)', background: 'rgba(148,163,184,0.04)' }}>
             <Trophy size={18} color="#f59e0b" />
-            <span style={{ fontWeight: '700', fontSize: '0.95rem', color: 'var(--text-main)' }}>Bảng xếp hạng · Top 15</span>
+            <span style={{ fontWeight: '700', fontSize: '0.95rem', color: 'var(--text-main)' }}>Bảng xếp hạng</span>
           </div>
 
           <div style={{ overflowY: 'auto', maxHeight: 'calc(100vh - 200px)' }}>
