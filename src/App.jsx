@@ -11,12 +11,14 @@ import Status from './pages/SystemLogs/Status';
 import History from './pages/SystemLogs/History';
 import Leaderboard from './pages/Leaderboard/Leaderboard';
 import Guide from './pages/Guide/Guide';
-import ChangePassword from './pages/Profile/ChangePassword';
-import EditProfile from './pages/Profile/EditProfile';
+import ChangePassword from './pages/Guide/ChangePassword';
+import EditProfile from './pages/Guide/EditProfile';
 import Profile from './pages/Profile/Profile';
-import Courses from './pages/Guide/Courses';
+import Courses from './pages/Profile/Courses';
 import AttackDefense from './pages/AttackDefense/AttackDefense';
 import CTFJeopardy from './pages/CTFJeopardy/CTFJeopardy';
+import JeoStatus from './pages/CTFJeopardy/JeoStatus';
+import JeoHistory from './pages/CTFJeopardy/JeoHistory';
 import CTFJeopardyDetail from './pages/CTFJeopardy/CTFJeopardyDetail';
 import TerminalFullScreen from './pages/Terminal/TerminalFullScreen';
 
@@ -45,6 +47,8 @@ function App() {
           <Route path="/courses" element={<Courses />} />
           <Route path="/attack-defense" element={<AttackDefense />} />
           <Route path="/ctf-jeopardy" element={<CTFJeopardy />} />
+          <Route path="/ctf-jeopardy/status" element={<JeoStatus />} />
+          <Route path="/ctf-jeopardy/history" element={<JeoHistory />} />
           <Route path="/ctf-jeopardy/:id" element={<CTFJeopardyDetail />} />
         </Route>
 

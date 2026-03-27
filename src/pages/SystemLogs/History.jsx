@@ -42,6 +42,8 @@ const History = () => {
               <option value="WA">WA - Wrong</option>
               <option value="WFN">WFN - Format</option>
               <option value="RTE">RTE - Error</option>
+              <option value="CE">CE - Compile Error</option>
+              <option value="CPY">CPY - Copy</option>
             </select>
           </div>
         </div>

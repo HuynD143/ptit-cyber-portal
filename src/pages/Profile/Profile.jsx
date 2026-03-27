@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { userProfileDetails, enrolledClasses } from '../../data/profileData';
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -10,7 +11,7 @@ const Profile = () => {
     { id: 'labs', label: '💻 Thực hành' },
   ];
 
-  const userAvatar = localStorage.getItem('user_avatar') || 'https://seclab.ptit.edu.vn/2020/images/avt.png';
+  const userAvatar = localStorage.getItem('user_avatar') || userProfileDetails.avatarDefault;
 
   return (
     <div style={{ padding: '2rem', maxWidth: '1400px', margin: '0 auto', display: 'flex', gap: '2rem', alignItems: 'flex-start' }}>
@@ -33,7 +34,7 @@ const Profile = () => {
           alt="Avatar" 
           style={{ width: '130px', height: '130px', borderRadius: '50%', objectFit: 'cover', marginBottom: '1rem', border: '4px solid var(--bg-surface-highest)', boxShadow: 'var(--shadow-ambient)' }} 
         />
-        <h2 style={{ margin: '0 0 1.5rem', fontSize: '1.4rem' }}>Đặng Ngọc Huy</h2>
+        <h2 style={{ margin: '0 0 1.5rem', fontSize: '1.4rem' }}>{userProfileDetails.fullName}</h2>
         
         <Link to="/user/edit" className="button" style={{ 
           width: '100%', 
@@ -51,35 +52,35 @@ const Profile = () => {
             <span style={{ fontSize: '1.2rem' }}>🧑‍🎓</span>
             <div>
               <p style={{ margin: 0, fontWeight: '600', fontSize: '0.9rem', color: 'var(--text-soft)' }}>Tài khoản:</p>
-              <p style={{ margin: 0, color: 'var(--primary)', fontWeight: 'bold', fontSize: '1rem' }}>B23DCKH056</p>
+              <p style={{ margin: 0, color: 'var(--primary)', fontWeight: 'bold', fontSize: '1rem' }}>{userProfileDetails.studentId}</p>
             </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', borderBottom: '1px dashed rgba(148,163,184,0.1)', paddingBottom: '1rem' }}>
             <span style={{ fontSize: '1.2rem' }}>🎓</span>
             <div>
               <p style={{ margin: 0, fontWeight: '600', fontSize: '0.9rem', color: 'var(--text-soft)' }}>Lớp:</p>
-              <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem' }}>D23CQKH01-N</p>
+              <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem' }}>{userProfileDetails.clazz}</p>
             </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', borderBottom: '1px dashed rgba(148,163,184,0.1)', paddingBottom: '1rem' }}>
             <span style={{ fontSize: '1.2rem' }}>📧</span>
             <div>
               <p style={{ margin: 0, fontWeight: '600', fontSize: '0.9rem', color: 'var(--text-soft)' }}>Email:</p>
-              <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', wordBreak: 'break-all' }}>b23dckh056@stu.ptit.edu.vn</p>
+              <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.9rem', wordBreak: 'break-all' }}>{userProfileDetails.email}</p>
             </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', borderBottom: '1px dashed rgba(148,163,184,0.1)', paddingBottom: '1rem' }}>
             <span style={{ fontSize: '1.2rem' }}>📞</span>
             <div>
               <p style={{ margin: 0, fontWeight: '600', fontSize: '0.9rem', color: 'var(--text-soft)' }}>Số điện thoại:</p>
-              <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem' }}>0987654321</p>
+              <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem' }}>{userProfileDetails.phone}</p>
             </div>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
             <span style={{ fontSize: '1.2rem' }}>🪪</span>
             <div>
               <p style={{ margin: 0, fontWeight: '600', fontSize: '0.9rem', color: 'var(--text-soft)' }}>Số CMND/CCCD:</p>
-              <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem' }}>001099012345</p>
+              <p style={{ margin: 0, color: 'var(--text-muted)', fontSize: '0.95rem' }}>{userProfileDetails.idCard}</p>
             </div>
           </div>
         </div>
@@ -130,16 +131,18 @@ const Profile = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  <tr style={{ borderBottom: '1px solid rgba(148,163,184,0.1)', transition: 'background 0.2s' }} onMouseOver={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'} onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
-                    <td style={{ padding: '1rem', textAlign: 'center', color: 'var(--text-muted)' }}>1</td>
-                    <td style={{ padding: '1rem', fontWeight: '500' }}>An toàn và bảo mật hệ thống thông tin</td>
-                    <td style={{ padding: '1rem', color: 'var(--text-muted)' }}>INT1303-19</td>
-                    <td style={{ padding: '1rem', color: 'var(--text-muted)', lineHeight: '1.4' }}>Học kỳ 2 năm<br/>học 2025-2026</td>
-                    <td style={{ padding: '1rem', color: 'var(--text-muted)' }}>Hoạt động</td>
-                    <td style={{ padding: '1rem', color: 'var(--primary)', fontWeight: 'bold', cursor: 'pointer' }}>
-                      <span style={{ borderBottom: '1px dashed var(--primary)' }}>Kết quả</span>
-                    </td>
-                  </tr>
+                  {enrolledClasses.map(c => (
+                    <tr key={c.stt} style={{ borderBottom: '1px solid rgba(148,163,184,0.1)', transition: 'background 0.2s' }} onMouseOver={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'} onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
+                      <td style={{ padding: '1rem', textAlign: 'center', color: 'var(--text-muted)' }}>{c.stt}</td>
+                      <td style={{ padding: '1rem', fontWeight: '500' }}>{c.subject}</td>
+                      <td style={{ padding: '1rem', color: 'var(--text-muted)' }}>{c.group}</td>
+                      <td style={{ padding: '1rem', color: 'var(--text-muted)', lineHeight: '1.4' }} dangerouslySetInnerHTML={{ __html: c.term.replace(' năm học', '<br/>học') }} />
+                      <td style={{ padding: '1rem', color: 'var(--text-muted)' }}>{c.status}</td>
+                      <td style={{ padding: '1rem', color: 'var(--primary)', fontWeight: 'bold', cursor: 'pointer' }}>
+                        <Link to={c.resultLink} style={{ color: 'inherit', textDecoration: 'none' }}><span style={{ borderBottom: '1px dashed var(--primary)' }}>Kết quả</span></Link>
+                      </td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

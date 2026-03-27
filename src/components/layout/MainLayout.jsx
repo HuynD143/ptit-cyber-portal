@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Outlet, Link, useLocation, useNavigate } from 'react-router-dom';
+import { userProfileDetails } from '../../data/profileData';
 
 const MainLayout = () => {
   const [profileOpen, setProfileOpen] = useState(false);
-  const [avatar, setAvatar] = useState(localStorage.getItem('user_avatar') || 'https://seclab.ptit.edu.vn/2020/images/avt.png');
+  const [avatar, setAvatar] = useState(localStorage.getItem('user_avatar') || userProfileDetails.avatarDefault);
   const location = useLocation();
   const navigate = useNavigate();
   const dropdownRef = useRef(null);
@@ -80,8 +81,8 @@ const MainLayout = () => {
                   <div className="nav__profile__menu profile__dropdown" style={{ position: 'absolute', right: 0, top: '45px', minWidth: '220px' }}>
                     <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
                       <li style={{ paddingBottom: '1rem', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
-                        <p className="nav__profile__menu__name" style={{ margin: 0, fontSize: '1rem', fontWeight: 'bold' }}>Đặng Ngọc Huy</p>
-                        <p className="nav__profile__menu__code" style={{ margin: 0, fontSize: '0.85rem', color: '#6b4cff' }}>B23DCKH056</p>
+                        <p className="nav__profile__menu__name" style={{ margin: 0, fontSize: '1rem', fontWeight: 'bold' }}>{userProfileDetails.fullName}</p>
+                        <p className="nav__profile__menu__code" style={{ margin: 0, fontSize: '0.85rem', color: '#6b4cff' }}>{userProfileDetails.studentId}</p>
                       </li>
                       <li style={{ paddingTop: '0.5rem' }}><Link to="/profile" onClick={closeDropdown} style={{ display: 'block', padding: '8px 0', color: '#acaab1', textDecoration: 'none' }}>Hồ sơ</Link></li>
                       <li><Link to="/courses" onClick={closeDropdown} style={{ display: 'block', padding: '8px 0', color: '#acaab1', textDecoration: 'none' }}>Danh sách lớp học</Link></li>

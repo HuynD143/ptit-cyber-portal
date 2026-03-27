@@ -95,3 +95,26 @@ const allUsers = [
 
 export const ctfLeaderboard = [...allUsers].sort((a, b) => b.points - a.points).slice(0, 15);
 export const MY_ID = 'B23DCKH056';
+
+export const ctfChallengeDetails = {
+  1: { title: 'Hidden Message in PNG', difficulty: 'Dễ', points: 100, downloadUrl: '#', externalUrl: '#' },
+  2: { title: 'Classic Caesar Cipher', difficulty: 'Dễ', points: 100, downloadUrl: '#', externalUrl: '#' },
+  3: { title: 'Base64 Chained Encoding', difficulty: 'Dễ', points: 100, downloadUrl: '#', externalUrl: '#' },
+  4: { title: 'EXIF Data Leak', difficulty: 'Dễ', points: 100, downloadUrl: '#', externalUrl: '#' },
+  5: { title: 'Broken RSA Public Key', difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
+  6: { title: 'SQL Injection Login Bypass', difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
+  7: { title: 'JWT None Algorithm Attack', difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
+  8: { title: 'PCAP Flag Recovery', difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
+  9: { title: 'XOR Keystream Recovery', difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
+  10: { title: 'Blind XXE via SVG Upload', difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
+  11: { title: 'Format String Leak (PIE bypass)', difficulty: 'Khó', points: 500, downloadUrl: '#', externalUrl: '#' },
+  12: { title: 'Heap Feng Shui', difficulty: 'Khó', points: 500, downloadUrl: '#', externalUrl: '#' },
+  13: { title: 'Kernel ROP Chain', difficulty: 'Khó', points: 500, downloadUrl: '#', externalUrl: '#' },
+  14: { title: 'Reverse Engineering Obfuscated VM', difficulty: 'Khó', points: 500, downloadUrl: '#', externalUrl: '#' },
+  15: { title: 'ECDSA Nonce Reuse Attack', difficulty: 'Khó', points: 500, downloadUrl: '#', externalUrl: '#' },
+  16: { title: 'DNS Exfiltration via PCAP', difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
+  17: { title: 'HTTP Request Smuggling', difficulty: 'Khó', points: 500, downloadUrl: '#', externalUrl: '#' },
+  18: { title: 'LSB Steganography Extraction', difficulty: 'Dễ', points: 100, downloadUrl: '#', externalUrl: '#' },
+  19: { title: 'Android APK Secret Flag', difficulty: 'Khó', points: 500, downloadUrl: '#', externalUrl: '#' },
+  20: { title: 'Padding Oracle Attack (CBC)', difficulty: 'Khó', points: 500, downloadUrl: '#', externalUrl: '#' },
+};

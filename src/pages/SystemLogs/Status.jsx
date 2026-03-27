@@ -5,11 +5,21 @@ import { mockSubmissions } from '../../data/statusData';
 
 const Status = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [filterUser, setFilterUser] = useState('');
+  const [filterTask, setFilterTask] = useState('');
+  const [filterStatus, setFilterStatus] = useState('Tất cả trạng thái');
   const itemsPerPage = 30;
 
-  const totalPages = Math.ceil(mockSubmissions.length / itemsPerPage);
+  const filteredData = mockSubmissions.filter(s => {
+    const matchUser = s.user.toLowerCase().includes(filterUser.toLowerCase());
+    const matchTask = s.task.toLowerCase().includes(filterTask.toLowerCase());
+    const matchStatus = filterStatus === 'Tất cả trạng thái' || s.status.startsWith(filterStatus);
+    return matchUser && matchTask && matchStatus;
+  });
+
+  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
   const startIndex = (currentPage - 1) * itemsPerPage;
-  const currentItems = mockSubmissions.slice(startIndex, startIndex + itemsPerPage);
+  const currentItems = filteredData.slice(startIndex, startIndex + itemsPerPage);
 
   const renderStatus = (s) => {
     switch (s) {
@@ -26,12 +36,16 @@ const Status = () => {
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.5rem' }}>
         <h2 style={{ margin: 0 }}>Trạng thái giải bài</h2>
         <div style={{ display: 'flex', gap: '1rem' }}>
-          <input type="text" placeholder="Người dùng..." style={{ width: '150px' }} />
-          <input type="text" placeholder="Bài tập..." style={{ width: '150px' }} />
-          <select style={{ width: '150px' }}>
-            <option>Tất cả trạng thái</option>
-            <option>AC</option>
-            <option>WA</option>
+          <input type="text" placeholder="Người dùng..." value={filterUser} onChange={e => { setFilterUser(e.target.value); setCurrentPage(1); }} style={{ width: '150px' }} />
+          <input type="text" placeholder="Bài tập..." value={filterTask} onChange={e => { setFilterTask(e.target.value); setCurrentPage(1); }} style={{ width: '150px' }} />
+          <select value={filterStatus} onChange={e => { setFilterStatus(e.target.value); setCurrentPage(1); }} style={{ width: '150px' }}>
+            <option value="Tất cả trạng thái">Tất cả trạng thái</option>
+            <option value="AC">AC</option>
+            <option value="WA">WA</option>
+            <option value="WFN">WFN</option>
+            <option value="CPY">CPY</option>
+            <option value="CE">CE</option>
+            <option value="RTE">RTE</option>
           </select>
         </div>
       </div>
