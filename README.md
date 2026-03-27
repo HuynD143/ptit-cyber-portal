@@ -50,9 +50,6 @@ Mở trình duyệt rồi truy cập địa chỉ trên để xem ứng dụng.
 
 ## Ép cổng cụ thể là 5173
 
-Cổng **5173 là mặc định của Vite** nên thường không cần cấu hình thêm.  
-Nếu cổng bị chiếm, Vite sẽ tự động chuyển sang cổng khác (5174, 5175, …).
-
 Để **luôn buộc dùng cổng 5173**, thêm option `--port` vào lệnh:
 
 ```bash
