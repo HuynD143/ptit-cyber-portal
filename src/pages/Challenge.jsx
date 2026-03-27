@@ -50,7 +50,7 @@ const Challenge = () => {
         onMouseOut={e => e.currentTarget.style.color = 'var(--text-muted)'}
       >
         <ArrowLeft size={18} />
-        Quay lại bài tập
+        Quay lại
       </button>
 
       {/* Main Container */}

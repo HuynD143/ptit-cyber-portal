@@ -18,7 +18,8 @@ Xem chi tiết trong thư mục system_flow
 ### Bước 1 — Clone hoặc mở thư mục dự án
 
 ```bash
-cd /Users/haidangstore/Documents/ATTT_UI_UX/ptit-cyber-portal
+cd /Users/Documents/ATTT_UI_UX/ptit-cyber-portal
+(Eg: cd /Users/haidangstore/Documents/ATTT_UI_UX/ptit-cyber-portal)
 ```
 
 ### Bước 2 — Cài đặt các thư viện
