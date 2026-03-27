@@ -12,7 +12,8 @@ const competitions = [
     end: '29 Mar, 08:00, 2026',
     duration: '24h',
     theme: 'linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(15, 23, 42, 1) 100%)',
-    iconColor: '#10b981'
+    iconColor: '#10b981',
+    image: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=600&auto=format&fit=crop'
   },
   {
     id: 'flag-wars',
@@ -23,7 +24,8 @@ const competitions = [
     end: '12 Apr, 10:00, 2026',
     duration: '48h',
     theme: 'linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(15, 23, 42, 1) 100%)',
-    iconColor: '#f59e0b'
+    iconColor: '#f59e0b',
+    image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=600&auto=format&fit=crop'
   },
   {
     id: 'ptit-cybergames-2026',
@@ -34,7 +36,8 @@ const competitions = [
     end: '02 May, 19:00, 2026',
     duration: '36h',
     theme: 'linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(15, 23, 42, 1) 100%)',
-    iconColor: '#6366f1'
+    iconColor: '#6366f1',
+    image: '/ptit-ctf-cover.png'
   }
 ];
 
@@ -89,8 +92,14 @@ const CTFCompetition = () => {
               e.currentTarget.style.boxShadow = 'none';
             }}
             >
-              <div style={{ height: '180px', background: comp.theme, position: 'relative', padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ 
+                height: '180px', 
+                background: comp.image ? `url(${comp.image}) center/cover no-repeat` : comp.theme, 
+                position: 'relative', padding: '1.5rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' 
+              }}>
+                {comp.image && <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(15,23,42,0.1) 0%, rgba(15,23,42,0.95) 100%)' }} />}
+                
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', position: 'relative', zIndex: 1 }}>
                   <span style={{ background: '#ef4444', color: '#fff', fontSize: '0.75rem', fontWeight: 'bold', padding: '4px 10px', borderRadius: '4px' }}>
                     {comp.status}
                   </span>
@@ -98,7 +107,7 @@ const CTFCompetition = () => {
                     {comp.type}
                   </span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', position: 'relative', zIndex: 1 }}>
                   <Flag size={54} color="rgba(255,255,255,0.9)" />
                 </div>
               </div>
