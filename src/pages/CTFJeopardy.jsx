@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { CheckCircle2, PlayCircle, Lock, Flag, Trophy } from 'lucide-react';
 
@@ -24,8 +24,42 @@ const allUsers = [
 const shuffled = [...allUsers].sort((a, b) => b.points - a.points).slice(0, 15);
 const MY_ID = 'B23DCKH056';
 
+// ─── Mock CTF History/Status Data ─────────────────────────────────
+const generateCTFHistory = () => {
+  const data = [];
+  const ctfTasks = ['Hidden Message in PNG', 'Classic Caesar Cipher', 'JWT None Algorithm Attack', 'LSB Steganography Extraction'];
+  for (let i = 1; i <= 15; i++) {
+    data.push({
+      id: 20500 - i,
+      time: `2026-03-${Math.floor(Math.random() * 26 + 1).toString().padStart(2, '0')} 14:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}:22`,
+      task: ctfTasks[Math.floor(Math.random() * ctfTasks.length)],
+      status: Math.random() > 0.3 ? 'AC' : 'WA'
+    });
+  }
+  return data;
+};
+
+const generateCTFStatus = () => {
+  const data = [];
+  const users = ['B23DCKH056', 'B22DCCN999', 'B22DCCN888', 'B21DCAT404', 'B23DCCN111'];
+  const ctfTasks = ['Hidden Message in PNG', 'Classic Caesar Cipher', 'EXIF Data Leak', 'Kernel ROP Chain', 'Padding Oracle Attack (CBC)'];
+  for (let i = 1; i <= 25; i++) {
+    data.push({
+      id: 30800 - i,
+      time: `2026-03-27 16:${Math.floor(Math.random() * 60).toString().padStart(2, '0')}:15`,
+      user: users[Math.floor(Math.random() * users.length)],
+      task: ctfTasks[Math.floor(Math.random() * ctfTasks.length)],
+      status: Math.random() > 0.4 ? 'AC' : 'WA'
+    });
+  }
+  return data;
+};
+
+const mockCTFHistory = generateCTFHistory();
+const mockCTFStatus = generateCTFStatus();
+
 // ─── Challenge list ───────────────────────────────────────────────
-const challenges = [
+const challengesData = [
   { id: 1,  title: 'Hidden Message in PNG',              difficulty: 'Dễ',        points: 100, status: 'Solved'    },
   { id: 2,  title: 'Classic Caesar Cipher',               difficulty: 'Dễ',        points: 100, status: 'Solved'    },
   { id: 3,  title: 'Base64 Chained Encoding',             difficulty: 'Dễ',        points: 100, status: 'Attempted' },
@@ -78,25 +112,191 @@ const getRankStyle = (rank) => {
 
 // ─── Component ────────────────────────────────────────────────────
 const CTFJeopardy = () => {
+  const [activeTab, setActiveTab] = useState('challenges');
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
   const itemsPerPage = 12;
 
   const handlePageChange = (newPage) => setSearchParams({ page: newPage });
 
-  const totalPages  = Math.ceil(challenges.length / itemsPerPage);
+  const totalPages  = Math.ceil(challengesData.length / itemsPerPage);
   const startIndex  = (currentPage - 1) * itemsPerPage;
-  const currentItems = challenges.slice(startIndex, startIndex + itemsPerPage);
+  const currentItems = challengesData.slice(startIndex, startIndex + itemsPerPage);
+
+  const renderTabContent = () => {
+    if (activeTab === 'history') {
+      return (
+        <div style={{ background: 'var(--bg-surface-elevated)', borderRadius: '16px', padding: '1.5rem', border: '1px solid rgba(148,163,184,0.1)', boxShadow: 'var(--shadow-soft)' }}>
+          <h3 style={{ marginTop: 0, marginBottom: '1.5rem' }}>Lịch sử giải bài của tôi</h3>
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead>
+              <tr style={{ textAlign: 'left', borderBottom: '1px solid rgba(148,163,184,0.1)' }}>
+                <th style={{ padding: '1rem' }}>RunID</th>
+                <th style={{ padding: '1rem' }}>Bài tập</th>
+                <th style={{ padding: '1rem' }}>Thời gian</th>
+                <th style={{ padding: '1rem' }}>Trạng thái</th>
+              </tr>
+            </thead>
+            <tbody>
+              {mockCTFHistory.map(h => (
+                <tr key={h.id} style={{ borderBottom: '1px solid rgba(148,163,184,0.05)' }}>
+                  <td style={{ padding: '1rem', color: 'var(--text-muted)' }}>#{h.id}</td>
+                  <td style={{ padding: '1rem', fontWeight: 500 }}>{h.task}</td>
+                  <td style={{ padding: '1rem', color: 'var(--text-soft)', fontSize: '0.9rem' }}>{h.time}</td>
+                  <td style={{ padding: '1rem' }}>
+                    <span style={{ color: h.status === 'AC' ? '#00cc66' : '#ff3366', fontWeight: 'bold' }}>{h.status}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+
+    if (activeTab === 'status') {
+      return (
+        <div style={{ background: 'var(--bg-surface-elevated)', borderRadius: '16px', padding: '1.5rem', border: '1px solid rgba(148,163,184,0.1)', boxShadow: 'var(--shadow-soft)' }}>
+          <h3 style={{ marginTop: 0, marginBottom: '1.5rem' }}>Trạng thái hệ thống CTF</h3>
+          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+            <thead>
+              <tr style={{ textAlign: 'left', borderBottom: '1px solid rgba(148,163,184,0.1)' }}>
+                <th style={{ padding: '1rem' }}>RunID</th>
+                <th style={{ padding: '1rem' }}>Người dùng</th>
+                <th style={{ padding: '1rem' }}>Bài tập</th>
+                <th style={{ padding: '1rem' }}>Trạng thái</th>
+              </tr>
+            </thead>
+            <tbody>
+              {mockCTFStatus.map(s => (
+                <tr key={s.id} style={{ borderBottom: '1px solid rgba(148,163,184,0.05)' }}>
+                  <td style={{ padding: '1rem', color: 'var(--text-muted)' }}>#{s.id}</td>
+                  <td style={{ padding: '1rem', fontWeight: 600, color: s.user === MY_ID ? 'var(--primary)' : 'inherit' }}>{s.user}</td>
+                  <td style={{ padding: '1rem', fontWeight: 500 }}>{s.task}</td>
+                  <td style={{ padding: '1rem' }}>
+                    <span style={{ color: s.status === 'AC' ? '#00cc66' : '#ff3366', fontWeight: 'bold' }}>{s.status}</span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
+    }
+
+    // Default: Challenges
+    return (
+      <>
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
+          gap: '1.25rem',
+          marginBottom: '2.5rem',
+        }}>
+          {currentItems.map(c => (
+            <Link to={`/ctf-jeopardy/${c.id}`} key={c.id} style={{ textDecoration: 'none' }}>
+              <div style={{
+                background: c.status === 'Attempted'
+                  ? 'linear-gradient(135deg, var(--bg-surface-elevated), rgba(220,38,38,0.05))'
+                  : 'var(--bg-surface-elevated)',
+                borderRadius: '16px',
+                padding: '1.25rem 1.5rem',
+                border: c.status === 'Attempted'
+                  ? '1px solid rgba(220,38,38,0.2)'
+                  : '1px solid rgba(148,163,184,0.1)',
+                boxShadow: 'var(--shadow-soft)',
+                transition: 'all 0.2s',
+                cursor: 'pointer',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                minHeight: '120px',
+              }}
+                onMouseOver={e => e.currentTarget.style.transform = 'translateY(-2px)'}
+                onMouseOut={e => e.currentTarget.style.transform = 'none'}
+              >
+                <div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.9rem' }}>
+                    <span style={{ background: getPointsBg(c.points), color: getPointsColor(c.points), padding: '3px 10px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '700', letterSpacing: '0.06em' }}>
+                      {c.points} pts
+                    </span>
+                    {renderStatusIcon(c.status)}
+                  </div>
+                  <h3 style={{ margin: '0 0 0.8rem', fontSize: '1.1rem', color: 'var(--text-main)', fontWeight: '600', lineHeight: '1.3' }}>
+                    {c.title}
+                  </h3>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
+                  <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: getDifficultyColor(c.difficulty), boxShadow: `0 0 7px ${getDifficultyColor(c.difficulty)}` }} />
+                  <span style={{ color: 'var(--text-soft)', fontSize: '0.85rem', fontWeight: '500' }}>{c.difficulty}</span>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        {totalPages > 1 && (
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
+            <button disabled={currentPage === 1} onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
+              style={{ padding: '8px 16px', background: 'var(--bg-surface)', border: '1px solid rgba(148,163,184,0.2)', color: currentPage === 1 ? 'var(--text-muted)' : 'var(--text-main)', cursor: currentPage === 1 ? 'not-allowed' : 'pointer', borderRadius: '8px' }}>
+              Trước
+            </button>
+            {[...Array(totalPages)].map((_, idx) => (
+              <button key={idx + 1} onClick={() => handlePageChange(idx + 1)}
+                style={{ padding: '8px 16px', background: currentPage === idx + 1 ? 'var(--primary)' : 'var(--bg-surface)', border: currentPage === idx + 1 ? 'none' : '1px solid rgba(148,163,184,0.2)', color: currentPage === idx + 1 ? '#fff' : 'var(--text-main)', cursor: 'pointer', borderRadius: '8px', fontWeight: currentPage === idx + 1 ? 'bold' : 'normal' }}>
+                {idx + 1}
+              </button>
+            ))}
+            <button disabled={currentPage === totalPages} onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
+              style={{ padding: '8px 16px', background: 'var(--bg-surface)', border: '1px solid rgba(148,163,184,0.2)', color: currentPage === totalPages ? 'var(--text-muted)' : 'var(--text-main)', cursor: currentPage === totalPages ? 'not-allowed' : 'pointer', borderRadius: '8px' }}>
+              Tiếp
+            </button>
+          </div>
+        )}
+      </>
+    );
+  };
+
+  const TabButton = ({ id, label }) => (
+    <button
+      onClick={() => setActiveTab(id)}
+      style={{
+        padding: '0.6rem 1.25rem',
+        background: activeTab === id ? 'rgba(148, 163, 184, 0.1)' : 'transparent',
+        border: 'none',
+        borderRadius: '8px',
+        color: activeTab === id ? 'var(--primary)' : 'var(--text-soft)',
+        fontWeight: '600',
+        fontSize: '0.95rem',
+        cursor: 'pointer',
+        transition: 'all 0.2s',
+        borderBottom: activeTab === id ? '2px solid var(--primary)' : '2px solid transparent',
+        borderRadius: '8px 8px 0 0'
+      }}
+    >
+      {label}
+    </button>
+  );
 
   return (
     <div style={{ padding: '2rem', maxWidth: '1600px', margin: '0 auto' }}>
 
       {/* ── Page header ── */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem' }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <Flag size={26} color="var(--primary)" />
-          <h2 style={{ margin: 0 }}>CTF Jeopardy</h2>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+            <Flag size={26} color="var(--primary)" />
+            <h2 style={{ margin: 0 }}>CTF Jeopardy</h2>
+          </div>
+          
+          {/* TABS CONTAINER */}
+          <div style={{ display: 'flex', gap: '0.5rem', borderBottom: '1px solid rgba(148,163,184,0.1)' }}>
+            <TabButton id="challenges" label="Bài tập" />
+            <TabButton id="history" label="Lịch sử" />
+            <TabButton id="status" label="Trạng thái" />
+          </div>
         </div>
+
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
           <input type="text" placeholder="Tìm kiếm bài tập..." style={{ width: '230px' }} />
           <select style={{ width: '150px' }}>
@@ -111,75 +311,9 @@ const CTFJeopardy = () => {
       {/* ── Two-column layout ── */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr minmax(0, 380px)', gap: '2rem', alignItems: 'start' }}>
 
-        {/* ════ LEFT: challenge grid + pagination ════ */}
-        <div>
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))',
-            gap: '1.25rem',
-            marginBottom: '2.5rem',
-          }}>
-            {currentItems.map(c => (
-              <Link to={`/ctf-jeopardy/${c.id}`} key={c.id} style={{ textDecoration: 'none' }}>
-                <div style={{
-                  background: c.status === 'Attempted'
-                    ? 'linear-gradient(135deg, var(--bg-surface-elevated), rgba(220,38,38,0.05))'
-                    : 'var(--bg-surface-elevated)',
-                  borderRadius: '16px',
-                  padding: '1.25rem 1.5rem',
-                  border: c.status === 'Attempted'
-                    ? '1px solid rgba(220,38,38,0.2)'
-                    : '1px solid rgba(148,163,184,0.1)',
-                  boxShadow: 'var(--shadow-soft)',
-                  transition: 'all 0.2s',
-                  cursor: 'pointer',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  minHeight: '120px',
-                }}
-                  onMouseOver={e => e.currentTarget.style.transform = 'translateY(-2px)'}
-                  onMouseOut={e => e.currentTarget.style.transform = 'none'}
-                >
-                  <div>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '0.9rem' }}>
-                      <span style={{ background: getPointsBg(c.points), color: getPointsColor(c.points), padding: '3px 10px', borderRadius: '6px', fontSize: '0.78rem', fontWeight: '700', letterSpacing: '0.06em' }}>
-                        {c.points} pts
-                      </span>
-                      {renderStatusIcon(c.status)}
-                    </div>
-                    <h3 style={{ margin: '0 0 0.8rem', fontSize: '1.1rem', color: 'var(--text-main)', fontWeight: '600', lineHeight: '1.3' }}>
-                      {c.title}
-                    </h3>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '7px' }}>
-                    <div style={{ width: '7px', height: '7px', borderRadius: '50%', background: getDifficultyColor(c.difficulty), boxShadow: `0 0 7px ${getDifficultyColor(c.difficulty)}` }} />
-                    <span style={{ color: 'var(--text-soft)', fontSize: '0.85rem', fontWeight: '500' }}>{c.difficulty}</span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
-              <button disabled={currentPage === 1} onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
-                style={{ padding: '8px 16px', background: 'var(--bg-surface)', border: '1px solid rgba(148,163,184,0.2)', color: currentPage === 1 ? 'var(--text-muted)' : 'var(--text-main)', cursor: currentPage === 1 ? 'not-allowed' : 'pointer', borderRadius: '8px' }}>
-                Trước
-              </button>
-              {[...Array(totalPages)].map((_, idx) => (
-                <button key={idx + 1} onClick={() => handlePageChange(idx + 1)}
-                  style={{ padding: '8px 16px', background: currentPage === idx + 1 ? 'var(--primary)' : 'var(--bg-surface)', border: currentPage === idx + 1 ? 'none' : '1px solid rgba(148,163,184,0.2)', color: currentPage === idx + 1 ? '#fff' : 'var(--text-main)', cursor: 'pointer', borderRadius: '8px', fontWeight: currentPage === idx + 1 ? 'bold' : 'normal' }}>
-                  {idx + 1}
-                </button>
-              ))}
-              <button disabled={currentPage === totalPages} onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
-                style={{ padding: '8px 16px', background: 'var(--bg-surface)', border: '1px solid rgba(148,163,184,0.2)', color: currentPage === totalPages ? 'var(--text-muted)' : 'var(--text-main)', cursor: currentPage === totalPages ? 'not-allowed' : 'pointer', borderRadius: '8px' }}>
-                Tiếp
-              </button>
-            </div>
-          )}
+        {/* ════ LEFT: challenge grid / history / status ════ */}
+        <div style={{ minWidth: 0 }}>
+          {renderTabContent()}
         </div>
 
         {/* ════ RIGHT: mini leaderboard (sticky) ════ */}
