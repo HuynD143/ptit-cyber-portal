@@ -1,34 +1,21 @@
-/* CYBERSECURITY STUDENT PORTAL - MODERN THEME (REFINED DARK ACADEMIC LOGIN) */
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap');
-
 :root {
-    /* CHANGED: Tinh chỉnh lại palette để dark hơn, chuyên nghiệp hơn, bớt đỏ gắt */
     --bg-base: #0b1020;
     --bg-surface: #121a2b;
     --bg-surface-elevated: #182235;
     --bg-surface-highest: #0f1726;
     --bg-glass: rgba(18, 26, 43, 0.78);
-
-    /* CHANGED: Đổi primary sang đỏ học thuật/cyber trầm hơn */
     --primary: #dc2626;
     --primary-dim: #b91c1c;
     --primary-glow: rgba(220, 38, 38, 0.22);
-
-    /* CHANGED: Secondary xanh lạnh để cân bằng với đỏ */
     --secondary: #4f8cff;
     --secondary-dim: #2f6fe4;
-
     --text-main: #f8fafc;
     --text-muted: #94a3b8;
     --text-soft: #cbd5e1;
     --text-inverse: #ffffff;
-
-    /* Typograpy */
     --font-sans: 'Inter', sans-serif;
     --font-display: 'Space Grotesk', sans-serif;
-
-    /* CHANGED: bo góc và shadow nhẹ hơn, bớt “gaming UI” */
     --radius-sm: 8px;
     --radius-md: 12px;
     --radius-lg: 18px;
@@ -37,7 +24,6 @@
     --shadow-glow: 0 0 0 3px rgba(79, 140, 255, 0.16);
     --transition-smooth: all 0.25s ease;
 }
-
 html,
 body {
     background-color: var(--bg-base);
@@ -48,13 +34,11 @@ body {
     -webkit-font-smoothing: antialiased;
     min-height: 100%;
 }
-
 *,
 *::before,
 *::after {
     box-sizing: border-box;
 }
-
 h1,
 h2,
 h3,
@@ -66,36 +50,28 @@ h6,
     color: var(--text-main);
     margin-top: 0;
 }
-
 a {
     color: var(--secondary);
     text-decoration: none;
     transition: var(--transition-smooth);
 }
-
 a:hover {
     color: #7fb0ff;
 }
-
-/* Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
-
 ::-webkit-scrollbar-track {
     background: var(--bg-base);
 }
-
 ::-webkit-scrollbar-thumb {
     background: #243049;
     border-radius: var(--radius-sm);
 }
-
 ::-webkit-scrollbar-thumb:hover {
     background: #334155;
 }
-
 .nav {
     background: rgba(15, 23, 38, 0.88);
     backdrop-filter: blur(20px);
@@ -107,13 +83,11 @@ a:hover {
     padding: 0.5rem 2rem;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.22);
 }
-
 .nav__menu {
     display: flex;
     align-items: center;
     gap: 1.5rem;
 }
-
 .nav__menu__item a {
     color: var(--text-muted);
     font-weight: 500;
@@ -121,22 +95,18 @@ a:hover {
     border-radius: var(--radius-sm);
     transition: var(--transition-smooth);
 }
-
 .nav__menu__item a:hover,
 .nav__menu__item.homepage a {
     color: var(--text-main);
     background: rgba(255, 255, 255, 0.04);
     text-shadow: none;
 }
-
 .nav__profile {
     display: flex;
     align-items: center;
     justify-content: flex-end;
     gap: 1rem;
 }
-
-/* DROPDOWN MENU (.nav__profile__menu) */
 .nav__profile__menu {
     background: var(--bg-surface-elevated);
     border: 1px solid rgba(148, 163, 184, 0.12);
@@ -146,48 +116,40 @@ a:hover {
     padding: 1rem;
     min-width: 200px;
 }
-
 .nav__profile__menu ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-
 .nav__profile__menu li {
     padding: 0.5rem 0;
     border-bottom: 1px solid rgba(148, 163, 184, 0.08);
 }
-
 .nav__profile__menu li:last-child {
     border: none;
 }
-
 .nav__profile__menu a {
     color: var(--text-muted);
     display: block;
     border-radius: var(--radius-sm);
     padding: 0.5rem;
 }
-
 .nav__profile__menu a:hover {
     color: var(--text-main);
     background: rgba(79, 140, 255, 0.08);
     transform: translateX(3px);
 }
-
 .nav__profile__menu__name {
     font-family: var(--font-display);
     font-weight: 700;
     color: var(--text-main);
     margin: 0 0 4px 0;
 }
-
 .nav__profile__menu__code {
     font-size: 0.85rem;
     color: var(--secondary);
     margin: 0;
 }
-
 input[type="text"],
 input[type="password"],
 input[type="email"],
@@ -208,16 +170,13 @@ select,
     line-height: 1.5;
     min-height: 50px;
     appearance: none;
-    /* CHANGED: Chuẩn hóa input để tránh cảm giác lệch giữa các browser */
     -webkit-appearance: none;
     -moz-appearance: none;
 }
-
 input::placeholder,
 textarea::placeholder {
     color: #64748b;
 }
-
 input:focus,
 textarea:focus,
 select:focus {
@@ -226,13 +185,10 @@ select:focus {
     box-shadow: var(--shadow-glow);
     background: #111b2e;
 }
-
-/* CHANGED: trạng thái có dữ liệu để input nhìn “active” rõ ràng hơn */
 .input--active {
     border-color: rgba(79, 140, 255, 0.32);
     background: #101a2c;
 }
-
 button,
 .button {
     background: linear-gradient(135deg, var(--primary), var(--primary-dim));
@@ -242,7 +198,6 @@ button,
     padding: 12px 24px;
     min-height: 48px;
     font-family: var(--font-sans);
-    /* CHANGED: nút dùng sans để đọc rõ hơn */
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition-smooth);
@@ -252,14 +207,12 @@ button,
     box-sizing: border-box;
     letter-spacing: 0.01em;
 }
-
 button:hover,
 .button:hover {
     transform: translateY(-1px);
     box-shadow: 0 10px 24px rgba(185, 28, 28, 0.22);
     color: #fff;
 }
-
 button:focus-visible,
 .button:focus-visible,
 input:focus-visible,
@@ -267,14 +220,12 @@ a:focus-visible {
     outline: none;
     box-shadow: var(--shadow-glow);
 }
-
 table {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0 8px;
     margin-top: 1rem;
 }
-
 thead th {
     font-family: var(--font-display);
     color: var(--text-muted);
@@ -285,44 +236,36 @@ thead th {
     border: none;
     text-align: left;
 }
-
 tbody tr {
     background: var(--bg-surface);
     transition: var(--transition-smooth);
     border-radius: var(--radius-sm);
 }
-
 tbody tr:hover {
     background: var(--bg-surface-highest);
     transform: translateY(-2px);
     box-shadow: var(--shadow-soft);
 }
-
 tbody td {
     padding: 1rem;
     border: none;
 }
-
 tbody td:first-child {
     border-top-left-radius: var(--radius-md);
     border-bottom-left-radius: var(--radius-md);
 }
-
 tbody td:last-child {
     border-top-right-radius: var(--radius-md);
     border-bottom-right-radius: var(--radius-md);
 }
-
 td .status-ac {
     color: #22c55e;
     text-shadow: none;
 }
-
 td .status-wa {
     color: #ef4444;
     text-shadow: none;
 }
-
 .container-fluid-login {
     display: flex;
     flex-direction: column;
@@ -336,7 +279,6 @@ td .status-wa {
     overflow: hidden;
     background-color: #070b14;
 }
-
 .container-fluid-login::before {
     content: "";
     position: absolute;
@@ -351,7 +293,6 @@ td .status-wa {
     filter: blur(8px) brightness(0.35);
     z-index: 0;
 }
-
 .login {
     position: relative;
     z-index: 10;
@@ -361,7 +302,6 @@ td .status-wa {
     justify-content: center;
     padding: 24px 0;
 }
-
 .login__main {
     background:
         linear-gradient(180deg, rgba(20, 28, 45, 0.92) 0%, rgba(15, 23, 38, 0.88) 100%);
@@ -371,16 +311,10 @@ td .status-wa {
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-ambient);
     width: 100%;
-
-    /* CHANGED SIZE: thu nhỏ card login */
     max-width: 360px;
-
-    /* CHANGED SIZE: bỏ padding cũ bị trùng, dùng padding gọn hơn */
     padding: 22px 20px 20px;
-
     position: relative;
 }
-
 .login__main::before {
     content: "";
     position: absolute;
@@ -392,26 +326,20 @@ td .status-wa {
             rgba(255, 255, 255, 0.015) 16%,
             rgba(255, 255, 255, 0) 30%);
 }
-
 .login__logo {
     position: relative;
     z-index: 1;
 }
-
 .login__logo img {
-    /* CHANGED SIZE: logo nhỏ lại để hợp card nhỏ */
     max-width: 84px;
     margin-bottom: 0.9rem;
     filter: drop-shadow(0 8px 20px rgba(220, 38, 38, 0.16));
 }
-
 .login__main__title {
     position: relative;
     z-index: 1;
 }
-
 .login__main__title p:first-child {
-    /* CHANGED SIZE: title nhỏ lại */
     font-size: 1.7rem;
     font-weight: 700;
     margin: 0 0 8px 0;
@@ -420,28 +348,20 @@ td .status-wa {
     background: none;
     -webkit-text-fill-color: initial;
 }
-
 .login__main__title p:last-child {
     color: #8fb3ff;
-
-    /* CHANGED SIZE: subtitle nhỏ hơn */
     font-size: 0.76rem;
     letter-spacing: 0.1em;
     margin: 0;
     text-transform: uppercase;
 }
-
 .login__main__form {
     display: flex;
     flex-direction: column;
-
-    /* CHANGED SIZE: giảm khoảng cách giữa các phần tử */
     gap: 10px;
-
     position: relative;
     z-index: 1;
 }
-
 .login__main__form label {
     font-size: 0.9rem;
     color: var(--text-soft);
@@ -449,7 +369,6 @@ td .status-wa {
     display: block;
     font-weight: 500;
 }
-
 .login__main__form input[type="text"],
 .login__main__form input[type="password"] {
     display: block;
@@ -459,24 +378,19 @@ td .status-wa {
     background: rgba(15, 23, 38, 0.92);
     border: 1px solid rgba(148, 163, 184, 0.16);
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
-
-    /* CHANGED SIZE: input thấp hơn */
     min-height: 42px;
     padding: 10px 14px;
 }
-
 .login__main__form input[type="text"]:hover,
 .login__main__form input[type="password"]:hover {
     border-color: rgba(148, 163, 184, 0.26);
     background: rgba(17, 27, 46, 0.96);
 }
-
 .checkbox__login,
 .login__main__forgetpass {
     margin-top: 0;
     font-size: 0.9rem;
 }
-
 .checkbox__login input[type="checkbox"] {
     width: 16px !important;
     height: 16px;
@@ -488,53 +402,40 @@ td .status-wa {
     flex: 0 0 auto;
     cursor: pointer;
 }
-
 .cb__label {
     color: var(--text-muted);
     cursor: pointer;
 }
-
 .login__main__forgetpass {
     color: #8fb3ff;
     font-weight: 500;
 }
-
 .login__main__forgetpass:hover {
     color: #bfd4ff;
     text-decoration: underline;
 }
-
 .login__main__form button {
     width: 100%;
-
-    /* CHANGED SIZE: nút gọn hơn */
     margin-top: 4px;
     min-height: 44px;
     border-radius: 12px;
     padding: 10px 16px;
 }
-
 .login__main__form button[type="submit"] {
     background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
     box-shadow: 0 10px 24px rgba(220, 38, 38, 0.18);
 }
-
 .login__main__form button[type="submit"]:hover {
     background: linear-gradient(135deg, #f05252 0%, #dc2626 100%);
 }
-
 .separate {
     text-align: center;
     color: var(--text-muted);
-
-    /* CHANGED SIZE: giảm khoảng cách separator */
     margin: 6px 0 2px;
-
     font-size: 0.88rem;
     position: relative;
     line-height: 1.4;
 }
-
 .separate::before,
 .separate::after {
     content: '';
@@ -544,15 +445,12 @@ td .status-wa {
     height: 1px;
     background: rgba(148, 163, 184, 0.18);
 }
-
 .separate::before {
     left: 0;
 }
-
 .separate::after {
     right: 0;
 }
-
 .login__main__form .button {
     width: 100% !important;
     background: rgba(15, 23, 38, 0.36) !important;
@@ -560,24 +458,19 @@ td .status-wa {
     border: 1px solid rgba(148, 163, 184, 0.2) !important;
     box-shadow: none;
 }
-
 .login__main__form .button:hover {
     background: rgba(79, 140, 255, 0.08) !important;
     border-color: rgba(79, 140, 255, 0.45) !important;
     color: #dbeafe;
     box-shadow: 0 8px 18px rgba(79, 140, 255, 0.12);
 }
-
-/* CHANGED: language switch bớt lạc quẻ so với card */
 .lang {
     z-index: 1;
 }
-
 .lang p {
     color: var(--text-muted) !important;
     font-size: 0.95rem;
 }
-
 .lang a {
     display: inline-flex;
     align-items: center;
@@ -585,26 +478,20 @@ td .status-wa {
     transition: var(--transition-smooth);
     border-radius: 999px;
 }
-
 .lang a:hover {
     transform: translateY(-1px) scale(1.04);
     opacity: 0.95;
 }
-
-/* CHANGED: background image mềm hơn để không lấn card login */
 .bg-image--left,
 .bg-image--right {
     pointer-events: none;
     filter: saturate(0.85) brightness(0.72);
 }
-
 .bg-image--left img,
 .bg-image--right img {
     max-width: min(28vw, 340px);
     height: auto;
 }
-
-/* Chat Icon */
 .chat__icon__wrapper {
     position: fixed;
     bottom: 2rem;
@@ -621,33 +508,27 @@ td .status-wa {
     border: 1px solid rgba(148, 163, 184, 0.12);
     transition: var(--transition-smooth);
 }
-
 .chat__icon__wrapper:hover {
     transform: scale(1.08);
     background: var(--primary);
 }
-
 @media (max-width: 768px) {
     .container-fluid-login {
         padding: 20px 14px 96px;
         justify-content: center;
     }
-
     .login__main {
         max-width: 100%;
         padding: 28px 20px 24px;
         border-radius: 16px;
     }
-
     .login__main__title p:first-child {
         font-size: 1.7rem;
     }
-
     .login__main__title p:last-child {
         font-size: 0.78rem;
         letter-spacing: 0.1em;
     }
-
     .lang {
         left: 50% !important;
         bottom: 20px !important;
@@ -655,7 +536,6 @@ td .status-wa {
         flex-wrap: wrap;
         justify-content: center;
     }
-
     .bg-image--left img,
     .bg-image--right img {
         max-width: 180px;

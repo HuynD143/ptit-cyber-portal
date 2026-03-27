@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { CheckCircle2, PlayCircle, Lock } from 'lucide-react';
+import { challengesData as challenges, allSubCategories } from '../../data/challengesData';
 
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -15,32 +16,7 @@ const Home = () => {
     setSearchParams({ page: newPage });
   };
 
-  // Unique tags for the sub-category filter
-  const allSubCategories = ['Tất cả chủ đề', 'Web', 'Pwn', 'Crypto', 'Forensics', 'Reversing', 'Mobile', 'OS', 'Hardware', 'Network'];
 
-  // 20 bài tập mock data
-  const challenges = [
-    { id: 1, title: 'Web Exploitation 101', tags: ['XSS', 'Web'], difficulty: 'Dễ', status: 'Solved' },
-    { id: 2, title: 'Buffer Overflow Master', tags: ['Pwn', 'Buffer'], difficulty: 'Trung bình', status: 'Attempted' },
-    { id: 3, title: 'SQLi Injection Lab', tags: ['SQLi', 'Web'], difficulty: 'Khó', status: 'Pending' },
-    { id: 4, title: 'Broken RSA Implementation', tags: ['Crypto', 'RSA'], difficulty: 'Trung bình', status: 'Attempted' },
-    { id: 5, title: 'Packet Analysis Pro', tags: ['Forensics', 'Network'], difficulty: 'Dễ', status: 'Solved' },
-    { id: 6, title: 'Crackme Level 5', tags: ['Reversing', 'Assembly'], difficulty: 'Khó', status: 'Pending' },
-    { id: 7, title: 'Linux Privilege Escalation', tags: ['OS', 'Linux'], difficulty: 'Trung bình', status: 'Pending' },
-    { id: 8, title: 'Android APK Reversing', tags: ['Mobile', 'Rev'], difficulty: 'Khó', status: 'Pending' },
-    { id: 9, title: 'IoT Firmware Analysis', tags: ['Hardware', 'IoT'], difficulty: 'Trung bình', status: 'Pending' },
-    { id: 10, title: 'XSS to RCE Chain', tags: ['Web', 'RCE'], difficulty: 'Khó', status: 'Pending' },
-    { id: 11, title: 'Basic Stack Smashing', tags: ['Pwn', 'Stack'], difficulty: 'Dễ', status: 'Solved' },
-    { id: 12, title: 'Malware Traffic Analysis', tags: ['Forensics', 'Pcap'], difficulty: 'Trung bình', status: 'Attempted' },
-    { id: 13, title: 'Advanced Heap Exploitation', tags: ['Pwn', 'Heap'], difficulty: 'Khó', status: 'Pending' },
-    { id: 14, title: 'JWT Token Forgery', tags: ['Web', 'Crypto'], difficulty: 'Trung bình', status: 'Solved' },
-    { id: 15, title: 'Windows Kernel Pwn', tags: ['Pwn', 'Windows'], difficulty: 'Khó', status: 'Pending' },
-    { id: 16, title: 'Steganography Basics', tags: ['Forensics', 'Stego'], difficulty: 'Dễ', status: 'Solved' },
-    { id: 17, title: 'Vulnerable Smart Contract', tags: ['Web3', 'Solidity'], difficulty: 'Trung bình', status: 'Pending' },
-    { id: 18, title: 'GraphQL Introspection', tags: ['Web', 'API'], difficulty: 'Dễ', status: 'Attempted' },
-    { id: 19, title: 'Active Directory Pentesting', tags: ['Network', 'AD'], difficulty: 'Khó', status: 'Pending' },
-    { id: 20, title: 'Format String Vulnerability', tags: ['Pwn', 'Fmt'], difficulty: 'Trung bình', status: 'Pending' }
-  ];
 
   const filteredChallenges = challenges.filter(c => {
     const matchSearch = c.title.toLowerCase().includes(searchQuery.toLowerCase());

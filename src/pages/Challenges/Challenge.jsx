@@ -2,18 +2,7 @@ import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 
-const getChallengeData = (id) => {
-  const titles = {
-    1: 'Web Exploitation 101', 2: 'Buffer Overflow Master', 3: 'SQLi Injection Lab',
-    4: 'Broken RSA Implementation', 5: 'Packet Analysis Pro', 6: 'Crackme Level 5',
-    7: 'Linux Privilege Escalation', 8: 'Android APK Reversing', 9: 'IoT Firmware Analysis',
-    10: 'XSS to RCE Chain', 11: 'Basic Stack Smashing', 12: 'Malware Traffic Analysis',
-    13: 'Advanced Heap Exploitation', 14: 'JWT Token Forgery', 15: 'Windows Kernel Pwn',
-    16: 'Steganography Basics', 17: 'Vulnerable Smart Contract', 18: 'GraphQL Introspection',
-    19: 'Active Directory Pentesting', 20: 'Format String Vulnerability'
-  };
-  return { title: titles[id] || 'Sử dụng Nmap nâng cao' };
-};
+import { getChallengeDetails as getChallengeData } from '../../data/challengesData';
 
 const Challenge = () => {
   const { id } = useParams();

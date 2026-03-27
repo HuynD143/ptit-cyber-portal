@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Target, Shield, Server, Activity, TerminalSquare, Flag, ExternalLink } from 'lucide-react';
-import TerminalWindow from '../components/ui/TerminalWindow';
+import TerminalWindow from '../../components/ui/TerminalWindow';
+import { attackDefenseTeams as teams, recentLogs } from '../../data/attackDefenseData';
 
 const AttackDefense = () => {
   const [flagInput, setFlagInput] = useState('');
@@ -27,13 +28,7 @@ const AttackDefense = () => {
     }
   };
 
-  const teams = [
-    { rank: 1, name: 'CyberWarriors', ip: '10.0.1.10', score: 2500, status: 'up' },
-    { rank: 2, name: '0xDeadBeef', ip: '10.0.1.11', score: 2350, status: 'up' },
-    { rank: 3, name: 'PTIT_Pwners (Bạn)', ip: '10.0.1.12', score: 2100, status: 'up', isMe: true },
-    { rank: 4, name: 'NullPointers', ip: '10.0.1.13', score: 1800, status: 'down' },
-    { rank: 5, name: 'SecKitten', ip: '10.0.1.14', score: 1550, status: 'corrupt' }
-  ];
+
 
   const getStatusColor = (status) => {
     if (status === 'up') return '#22c55e';
@@ -105,15 +100,18 @@ const AttackDefense = () => {
               <Activity size={20} color="var(--primary)" /> Log Tấn công/Phòng thủ gần đây
             </h2>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', fontFamily: 'monospace', fontSize: '0.9rem' }}>
-              <div style={{ background: 'rgba(34, 197, 94, 0.1)', borderLeft: '3px solid #22c55e', padding: '0.8rem', color: 'var(--text-soft)' }}>
-                <span style={{ color: '#22c55e' }}>[VICTORY]</span> Đội bạn đã khai thác thành công flag của <span style={{ color: '#fff' }}>NullPointers</span> (+50đ)
-              </div>
-              <div style={{ background: 'rgba(245, 158, 11, 0.1)', borderLeft: '3px solid #f59e0b', padding: '0.8rem', color: 'var(--text-soft)' }}>
-                <span style={{ color: '#f59e0b' }}>[WARNING]</span> Dịch vụ Web của bạn đang trả về mã lỗi 500 (Corrupt SLA)
-              </div>
-              <div style={{ background: 'rgba(239, 68, 68, 0.1)', borderLeft: '3px solid #ef4444', padding: '0.8rem', color: 'var(--text-soft)' }}>
-                <span style={{ color: '#ef4444' }}>[DEFENSE FAILED]</span> <span style={{ color: '#fff' }}>0xDeadBeef</span> đã lấy mất flag của bạn (-50đ)
-              </div>
+              {recentLogs.map(log => {
+                let colorBase, title;
+                if (log.type === 'victory') { colorBase = '#22c55e'; title = '[VICTORY]'; }
+                else if (log.type === 'warning') { colorBase = '#f59e0b'; title = '[WARNING]'; }
+                else { colorBase = '#ef4444'; title = '[DEFENSE FAILED]'; }
+
+                return (
+                  <div key={log.id} style={{ background: `rgba(${colorBase === '#22c55e' ? '34, 197, 94' : colorBase === '#f59e0b' ? '245, 158, 11' : '239, 68, 68'}, 0.1)`, borderLeft: `3px solid ${colorBase}`, padding: '0.8rem', color: 'var(--text-soft)' }}>
+                    <span style={{ color: colorBase }}>{title}</span> {log.message}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

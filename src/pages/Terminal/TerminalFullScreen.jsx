@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import TerminalWindow from '../components/ui/TerminalWindow';
+import TerminalWindow from '../../components/ui/TerminalWindow';
 
 const TerminalFullScreen = () => {
   useEffect(() => {

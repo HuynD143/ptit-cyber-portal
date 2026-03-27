@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { ArrowLeft, Terminal, Copy, Power, Server, ExternalLink, Flag, CheckCircle, Download, Globe } from 'lucide-react';
-import TerminalWindow from '../components/ui/TerminalWindow';
+import TerminalWindow from '../../components/ui/TerminalWindow';
 
 const getChallengeData = (id) => {
   const challenges = {

@@ -4,21 +4,21 @@ import MainLayout from './components/layout/MainLayout';
 import AuthLayout from './components/layout/AuthLayout';
 
 // Pages
-import Login from './pages/Login';
-import Home from './pages/Home';
-import Challenge from './pages/Challenge';
-import Status from './pages/Status';
-import History from './pages/History';
-import Leaderboard from './pages/Leaderboard';
-import Guide from './pages/Guide';
-import ChangePassword from './pages/ChangePassword';
-import EditProfile from './pages/EditProfile';
-import Profile from './pages/Profile';
-import Courses from './pages/Courses';
-import AttackDefense from './pages/AttackDefense';
-import CTFJeopardy from './pages/CTFJeopardy';
-import CTFJeopardyDetail from './pages/CTFJeopardyDetail';
-import TerminalFullScreen from './pages/TerminalFullScreen';
+import Login from './pages/Auth/Login';
+import Home from './pages/Challenges/Home';
+import Challenge from './pages/Challenges/Challenge';
+import Status from './pages/SystemLogs/Status';
+import History from './pages/SystemLogs/History';
+import Leaderboard from './pages/Leaderboard/Leaderboard';
+import Guide from './pages/Guide/Guide';
+import ChangePassword from './pages/Profile/ChangePassword';
+import EditProfile from './pages/Profile/EditProfile';
+import Profile from './pages/Profile/Profile';
+import Courses from './pages/Guide/Courses';
+import AttackDefense from './pages/AttackDefense/AttackDefense';
+import CTFJeopardy from './pages/CTFJeopardy/CTFJeopardy';
+import CTFJeopardyDetail from './pages/CTFJeopardy/CTFJeopardyDetail';
+import TerminalFullScreen from './pages/Terminal/TerminalFullScreen';
 
 import './assets/modern-theme.css'; // The new Digital Vault aesthetic
 
