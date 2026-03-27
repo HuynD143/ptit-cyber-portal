@@ -1,0 +1,45 @@
+---
+config:
+  layout: fixed
+---
+flowchart TB
+    BatDau["Bắt đầu"] --> MoHeThong["Mở hệ thống"]
+    MoHeThong --> TrangDangNhap["Trang Đăng nhập 1"]
+    TrangDangNhap --> NhapThongTin{"Người dùng nhập thông tin tài khoản"}
+    NhapThongTin --> KiemTraDangNhap{"Hệ thống xác thực"}
+    KiemTraDangNhap -- Thất bại --> TrangDangNhapThongBaoLoi["Trang Đăng nhập hiển thị cảnh báo đỏ"]
+    TrangDangNhapThongBaoLoi --> NhapThongTin
+    KiemTraDangNhap -- Thành công --> TrangChu["Vào Trang chủ Dashboard"]
+    TrangChu --> LocBaiTap["Bài tập"] & MenuBangXepHang["Bảng xếp hạng tổng của phần Bài tập"] & MenuTrangThai["Trạng thái hệ thống"] & MenuHoSo["Biểu tượng avatar tài khoản cá nhân"] & MenuHuongDan["Hướng dẫn chung"] & n6["Lịch sử nộp bài cá nhân"] & n16["CTF Competition"] & MenuCTFJeopardy["CTF Jeopardy"]
+    LocBaiTap --> DanhSachBaiTap["Xem danh sách bài tập, thực hiện lọc bài theo các bộ lọc"]
+    DanhSachBaiTap --> ChiTietBaiTap["Chọn một bài tập và xem Chi tiết bài tập (theo trang)"]
+    ChiTietBaiTap --> DocYeuCau["Đọc mô tả và yêu cầu thực hành"]
+    DocYeuCau --> ThucHienLab["Thực hiện làm tập theo hướng dẫn trên máy tính cá nhân"] & n10["Trở về trang Bài tập"]
+    ThucHienLab --> NopFileBaiLam["Duyệt file từ máy tính và nộp bài"]
+    NopFileBaiLam --> TrangLichSu["Chuyển hướng đến trang Lịch sử cá nhân"]
+    TrangLichSu --> XemKetQua["Xem trạng thái chấm bài như Accepted/WA/RTE/..."]
+    MenuCTFJeopardy --> BangXepHangNho["Theo dõi bảng xếp hạng theo thời gian thực"] & ChonBaiCTF["Xem danh sách bài tập, thực hiện chọn bài theo các bộ lọc sẵn có"] & n14["Trạng thái"] & n18["Lịch sử"]
+    ChonBaiCTF --> ChiTietJeopardy["Xem chi tiết đề bài"]
+    ChiTietJeopardy --> KhoiDongInstance["Yêu cầu khởi động máy chủ ảo"] & n13["Trở về trang CTF Jeopardy"]
+    KhoiDongInstance --> TuongTacTerminal["Truy cập thông qua Terminal tại web hoặc mở 1 cửa sổ Terminal mới"]
+    TuongTacTerminal --> TimCo["Tìm kiếm flag trong môi trường thực hành"]
+    TimCo --> NopFlagCTF["Nhập chuỗi flag và xác nhận nộp"]
+    NopFlagCTF --> PhanHoiKetQua["Hệ thống phản hồi Đúng hoặc Sai ngay lập tức"]
+    MenuAttackDefense["Click chọn các cuộc thi CTF hiện có (giao diện giống nhau)"] --> TheoDoiDiem["Theo dõi bảng xếp hạng điểm số"] & KhaiThacDoiThu["Nộp flag và nhận điểm cộng/trừ tương ứng"] & VaLoiDichVu["Truy cập Terminal tại web hoặc mở 1 cửa sổ Terminal mới để tìm kiếm flag của đối thủ"] & DashboardMucTieu["Quan sát trạng thái tăng/giảm điểm của các đội thi"]
+    MenuBangXepHang --> XemThuHang["So sánh thành tích với toàn bộ sinh viên"]
+    MenuTrangThai --> XemLuotNopBai["Theo dõi các lượt nộp bài mới nhất của toàn hệ thống"]
+    MenuHoSo --> TongQuanHoSo["Xem thông tin sinh viên và các môn học tham gia"] & n11["Xem Hồ sơ cá nhân"] & n12["Đăng xuất 1"]
+    MenuHuongDan --> XemTaiLieu["Đọc hướng dẫn chung cho hệ thống"] & n2["Chỉnh sửa thông tin hồ sơ cá nhân"] & n3["Đổi mật khẩu"]
+    n2 --> n4["Lưu thông tin đã chỉnh sửa vào hồ sơ (bao gồm cả ảnh avatar nếu có)"]
+    n3 --> n5["Cập nhật mật khẩu thành công"]
+    n6 --> n7["Xem lại lịch sử nộp bài cá nhân"]
+    n7 --> n8["Xem Chi tiết bài tập (nếu cần)"]
+    XemLuotNopBai --> n9["Xem Chi tiết bài tập (nếu cần)"]
+    n10 --> ChiTietBaiTap
+    n12 --> TrangDangNhap
+    n13 --> ChonBaiCTF
+    n14 --> n15["Theo dõi các lượt làm bài CTF mới nhất của toàn bộ hệ thống"]
+    n16 --> MenuAttackDefense
+    n15 --> n17["Xem chi tiết bài tập (nếu cần)"]
+    n18 --> n19["Xem lịch sử nộp bài CTF cá nhân"]
+    n19 --> n20["Xem chi tiết bài tập CTF (nếu cần)"]
