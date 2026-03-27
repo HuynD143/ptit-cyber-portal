@@ -5,26 +5,26 @@ import TerminalWindow from '../../components/ui/TerminalWindow';
 
 const getChallengeData = (id) => {
   const challenges = {
-    1:  { title: 'Hidden Message in PNG',              difficulty: 'Dễ',        points: 100, downloadUrl: '#', externalUrl: '#' },
-    2:  { title: 'Classic Caesar Cipher',               difficulty: 'Dễ',        points: 100, downloadUrl: '#', externalUrl: '#' },
-    3:  { title: 'Base64 Chained Encoding',             difficulty: 'Dễ',        points: 100, downloadUrl: '#', externalUrl: '#' },
-    4:  { title: 'EXIF Data Leak',                      difficulty: 'Dễ',        points: 100, downloadUrl: '#', externalUrl: '#' },
-    5:  { title: 'Broken RSA Public Key',               difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
-    6:  { title: 'SQL Injection Login Bypass',          difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
-    7:  { title: 'JWT None Algorithm Attack',           difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
-    8:  { title: 'PCAP Flag Recovery',                  difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
-    9:  { title: 'XOR Keystream Recovery',              difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
-    10: { title: 'Blind XXE via SVG Upload',            difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
-    11: { title: 'Format String Leak (PIE bypass)',     difficulty: 'Khó',        points: 500, downloadUrl: '#', externalUrl: '#' },
-    12: { title: 'Heap Feng Shui',                      difficulty: 'Khó',        points: 500, downloadUrl: '#', externalUrl: '#' },
-    13: { title: 'Kernel ROP Chain',                    difficulty: 'Khó',        points: 500, downloadUrl: '#', externalUrl: '#' },
-    14: { title: 'Reverse Engineering Obfuscated VM',   difficulty: 'Khó',        points: 500, downloadUrl: '#', externalUrl: '#' },
-    15: { title: 'ECDSA Nonce Reuse Attack',            difficulty: 'Khó',        points: 500, downloadUrl: '#', externalUrl: '#' },
-    16: { title: 'DNS Exfiltration via PCAP',           difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
-    17: { title: 'HTTP Request Smuggling',              difficulty: 'Khó',        points: 500, downloadUrl: '#', externalUrl: '#' },
-    18: { title: 'LSB Steganography Extraction',        difficulty: 'Dễ',         points: 100, downloadUrl: '#', externalUrl: '#' },
-    19: { title: 'Android APK Secret Flag',             difficulty: 'Khó',        points: 500, downloadUrl: '#', externalUrl: '#' },
-    20: { title: 'Padding Oracle Attack (CBC)',         difficulty: 'Khó',        points: 500, downloadUrl: '#', externalUrl: '#' },
+    1: { title: 'Hidden Message in PNG', difficulty: 'Dễ', points: 100, downloadUrl: '#', externalUrl: '#' },
+    2: { title: 'Classic Caesar Cipher', difficulty: 'Dễ', points: 100, downloadUrl: '#', externalUrl: '#' },
+    3: { title: 'Base64 Chained Encoding', difficulty: 'Dễ', points: 100, downloadUrl: '#', externalUrl: '#' },
+    4: { title: 'EXIF Data Leak', difficulty: 'Dễ', points: 100, downloadUrl: '#', externalUrl: '#' },
+    5: { title: 'Broken RSA Public Key', difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
+    6: { title: 'SQL Injection Login Bypass', difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
+    7: { title: 'JWT None Algorithm Attack', difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
+    8: { title: 'PCAP Flag Recovery', difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
+    9: { title: 'XOR Keystream Recovery', difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
+    10: { title: 'Blind XXE via SVG Upload', difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
+    11: { title: 'Format String Leak (PIE bypass)', difficulty: 'Khó', points: 500, downloadUrl: '#', externalUrl: '#' },
+    12: { title: 'Heap Feng Shui', difficulty: 'Khó', points: 500, downloadUrl: '#', externalUrl: '#' },
+    13: { title: 'Kernel ROP Chain', difficulty: 'Khó', points: 500, downloadUrl: '#', externalUrl: '#' },
+    14: { title: 'Reverse Engineering Obfuscated VM', difficulty: 'Khó', points: 500, downloadUrl: '#', externalUrl: '#' },
+    15: { title: 'ECDSA Nonce Reuse Attack', difficulty: 'Khó', points: 500, downloadUrl: '#', externalUrl: '#' },
+    16: { title: 'DNS Exfiltration via PCAP', difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' },
+    17: { title: 'HTTP Request Smuggling', difficulty: 'Khó', points: 500, downloadUrl: '#', externalUrl: '#' },
+    18: { title: 'LSB Steganography Extraction', difficulty: 'Dễ', points: 100, downloadUrl: '#', externalUrl: '#' },
+    19: { title: 'Android APK Secret Flag', difficulty: 'Khó', points: 500, downloadUrl: '#', externalUrl: '#' },
+    20: { title: 'Padding Oracle Attack (CBC)', difficulty: 'Khó', points: 500, downloadUrl: '#', externalUrl: '#' },
   };
   return challenges[id] || { title: 'CTF Challenge', difficulty: 'Trung bình', points: 300, downloadUrl: '#', externalUrl: '#' };
 };
@@ -203,24 +203,24 @@ const CTFJeopardyDetail = () => {
               </button>
 
               {/* Resources Section - Compact Links below Submit Button */}
-              <div style={{ 
-                display: 'grid', 
-                gridTemplateColumns: '1fr 1fr', 
-                marginTop: '0.5rem', 
-                borderRadius: '8px', 
-                background: 'rgba(255,255,255,0.03)', 
+              <div style={{
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                marginTop: '0.5rem',
+                borderRadius: '8px',
+                background: 'rgba(255,255,255,0.03)',
                 border: '1px solid rgba(148,163,184,0.08)',
                 overflow: 'hidden'
               }}>
                 <a href={data.downloadUrl} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: 'var(--text-soft)', textDecoration: 'none', fontSize: '0.85rem', fontWeight: '500', transition: 'all 0.2s', padding: '0.8rem' }}
-                   onMouseOver={e => { e.currentTarget.style.color = 'var(--primary)'; e.currentTarget.style.background = 'rgba(255,255,255,0.02)'; }}
-                   onMouseOut={e => { e.currentTarget.style.color = 'var(--text-soft)'; e.currentTarget.style.background = 'transparent'; }}>
-                  <Download size={16} /> Tài nguyên
+                  onMouseOver={e => { e.currentTarget.style.color = 'var(--primary)'; e.currentTarget.style.background = 'rgba(255,255,255,0.02)'; }}
+                  onMouseOut={e => { e.currentTarget.style.color = 'var(--text-soft)'; e.currentTarget.style.background = 'transparent'; }}>
+                  <Download size={16} /> Tải tài nguyên
                 </a>
                 <a href={data.externalUrl} target="_blank" rel="noreferrer" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', color: 'var(--text-soft)', textDecoration: 'none', fontSize: '0.85rem', fontWeight: '500', transition: 'all 0.2s', padding: '0.8rem', borderLeft: '1px solid rgba(148,163,184,0.1)' }}
-                   onMouseOver={e => { e.currentTarget.style.color = 'var(--primary)'; e.currentTarget.style.background = 'rgba(255,255,255,0.02)'; }}
-                   onMouseOut={e => { e.currentTarget.style.color = 'var(--text-soft)'; e.currentTarget.style.background = 'transparent'; }}>
-                  <Globe size={16} /> Link máy chủ / API
+                  onMouseOver={e => { e.currentTarget.style.color = 'var(--primary)'; e.currentTarget.style.background = 'rgba(255,255,255,0.02)'; }}
+                  onMouseOut={e => { e.currentTarget.style.color = 'var(--text-soft)'; e.currentTarget.style.background = 'transparent'; }}>
+                  <Globe size={16} /> Link external
                 </a>
               </div>
             </div>
