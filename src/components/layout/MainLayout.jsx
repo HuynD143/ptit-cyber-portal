@@ -60,7 +60,7 @@ const MainLayout = () => {
               <div className={isActive('/history')}><Link to="/history">Lịch sử</Link></div>
               <div className={isActive('/leaderboard')}><Link to="/leaderboard">Bảng xếp hạng</Link></div>
               <div className={isActive('/ctf-jeopardy')}><Link to="/ctf-jeopardy">CTF Jeopardy</Link></div>
-              <div className={isActive('/attack-defense')}><Link to="/attack-defense">Attack-Defense</Link></div>
+              <div className={isActive('/ctf-competition')}><Link to="/ctf-competition">CTF Competition</Link></div>
               <div className={isActive('/guide')}><Link to="/guide">Hướng dẫn</Link></div>
             </div>
           </div>

@@ -15,7 +15,10 @@ import ChangePassword from './pages/Guide/ChangePassword';
 import EditProfile from './pages/Guide/EditProfile';
 import Profile from './pages/Profile/Profile';
 import Courses from './pages/Profile/Courses';
-import AttackDefense from './pages/AttackDefense/AttackDefense';
+import CTFCompetition from './pages/CTFCompetition/CTFCompetition';
+import HackDay2026 from './pages/CTFCompetition/HackDay2026';
+import FlagWars from './pages/CTFCompetition/FlagWars';
+import PTITCybergames2026 from './pages/CTFCompetition/PTITCybergames2026';
 import CTFJeopardy from './pages/CTFJeopardy/CTFJeopardy';
 import JeoStatus from './pages/CTFJeopardy/JeoStatus';
 import JeoHistory from './pages/CTFJeopardy/JeoHistory';
@@ -45,7 +48,10 @@ function App() {
           <Route path="/user/edit" element={<EditProfile />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/courses" element={<Courses />} />
-          <Route path="/attack-defense" element={<AttackDefense />} />
+          <Route path="/ctf-competition" element={<CTFCompetition />} />
+          <Route path="/ctf-competition/hack-day-2026" element={<HackDay2026 />} />
+          <Route path="/ctf-competition/flag-wars" element={<FlagWars />} />
+          <Route path="/ctf-competition/ptit-cybergames-2026" element={<PTITCybergames2026 />} />
           <Route path="/ctf-jeopardy" element={<CTFJeopardy />} />
           <Route path="/ctf-jeopardy/status" element={<JeoStatus />} />
           <Route path="/ctf-jeopardy/history" element={<JeoHistory />} />

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Target, Shield, Server, Activity, TerminalSquare, Flag, ExternalLink } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Target, Shield, Server, Activity, TerminalSquare, Flag, ExternalLink, ArrowLeft } from 'lucide-react';
 import TerminalWindow from '../../components/ui/TerminalWindow';
 import { attackDefenseTeams as teams, recentLogs } from '../../data/attackDefenseData';
 
-const AttackDefense = () => {
+const PTITCybergames2026 = () => {
+  const navigate = useNavigate();
   const [flagInput, setFlagInput] = useState('');
   const [currentTime, setCurrentTime] = useState(0); // Elapsed time in seconds
   const [isTerminalOpen, setIsTerminalOpen] = useState(false);
@@ -38,12 +40,21 @@ const AttackDefense = () => {
 
   return (
     <div style={{ padding: '2rem', maxWidth: '1400px', margin: '0 auto' }}>
+      <button 
+        onClick={() => navigate('/ctf-competition')} 
+        style={{ display: 'flex', alignItems: 'center', gap: '8px', background: 'transparent', border: 'none', color: 'var(--text-soft)', cursor: 'pointer', marginBottom: '1.5rem', padding: 0, fontSize: '1rem', fontWeight: '500', transition: 'color 0.2s' }}
+        onMouseOver={e => e.currentTarget.style.color = 'var(--primary)'}
+        onMouseOut={e => e.currentTarget.style.color = 'var(--text-soft)'}
+      >
+        <ArrowLeft size={20} /> Danh sách cuộc thi
+      </button>
+      
       {/* Header */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
         <div>
           <h1 style={{ margin: '0 0 0.5rem', display: 'flex', alignItems: 'center', gap: '1rem', color: 'var(--text-main)' }}>
             <Shield color="var(--primary)" size={32} />
-            Hệ thống Attack - Defense
+            PTIT Cybergames 2026
           </h1>
           <p style={{ color: 'var(--text-muted)', margin: 0 }}>Vòng 2: Khai thác và Vá lỗi dịch vụ Nội bộ (Tick Rate: 60s)</p>
         </div>
@@ -192,4 +203,4 @@ const AttackDefense = () => {
   );
 };
 
-export default AttackDefense;
+export default PTITCybergames2026;
