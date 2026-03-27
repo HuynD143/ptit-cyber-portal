@@ -1,4 +1,6 @@
-# 🛡️ PTIT Cyber Portal — Hướng dẫn chạy dự án
+# 🛡️ PTIT Cyber Portal
+
+**🌐 Live Demo:** [https://ptit-cyber-portal.vercel.app]
 
 ## Luồng hệ thống
 
@@ -15,11 +17,11 @@ Xem chi tiết trong thư mục system_flow
 
 ## Cài đặt và chạy
 
-### Bước 1 — Clone hoặc mở thư mục dự án
+### Bước 1 — Clone hoặc tải thư mục dự án
 
 ```bash
-cd /Users/Documents/ATTT_UI_UX/ptit-cyber-portal
-(Eg: cd /Users/haidangstore/Documents/ATTT_UI_UX/ptit-cyber-portal)
+git clone https://github.com/HuynD143/ptit-cyber-portal.git
+cd ptit-cyber-portal
 ```
 
 ### Bước 2 — Cài đặt các thư viện
@@ -86,41 +88,13 @@ export default defineConfig({
 
 ---
 
-## Công nghệ sử dụng
+## Công nghệ và Tính năng nổi bật
 
 - **React 19** + **React Router v7**
-- **Vite 8** — build tool & dev server
-- **xterm.js** — terminal giả lập trong trình duyệt
-- **lucide-react** — icon library
+- **Vite 8** — Build tool & Web dev server
+- **xTerm.js** — Tích hợp Terminal giả lập kết nối SSH mượt mà trực tiếp trên trình duyệt web.
+- **lucide-react** — Thư viện icon chuyên nghiệp.
+- **Dynamic CTF Engine** — Hệ thống giải đấu **CTF Attack-Defense** & **CTF Jeopardy** giả lập hoàn chỉnh với Dashboard live score, quản lý SLA, Submission history và Bảng xếp hạng.
+- **Glassmorphism Dark Theme** — Thiết kế UI/UX theo chuẩn hệ thống bảo mật hiện đại.
 
 ---
-
-## 🚀 Hướng dẫn Deploy dự án miễn phí
-
-Vì dự án đã được kết nối với GitHub, bạn có thể dễ dàng đưa ứng dụng lên mạng bằng một trong hai dịch vụ phổ biến nhất hiện nay:
-
-### Phương án 1 — Vercel (Khuyên dùng)
-
-1.  Truy cập [vercel.com](https://vercel.com) và đăng nhập bằng tài khoản **GitHub**.
-2.  Nhấn nút **"Add New"** > **"Project"**.
-3.  Tìm repository `ptit-cyber-portal` và nhấn **"Import"**.
-4.  Ở phần **Build & Development Settings**, Vercel sẽ tự động nhận diện dự án Vite:
-    *   Framework Preset: `Vite`
-    *   Build Command: `npm run build`
-    *   Output Directory: `dist`
-5.  Nhấn **"Deploy"**. Chờ khoảng 1-2 phút, bạn sẽ có một đường dẫn `.vercel.app` để truy cập.
-
-### Phương án 2 — Netlify
-
-1.  Truy cập [netlify.com</a> và đăng nhập bằng **GitHub**.
-2.  Nhấn **"Add new site"** > **"Import an existing project"**.
-3.  Chọn **GitHub** và cấp quyền truy cập repository.
-4.  Cấu hình tương tự: Build command là `npm run build`, Publish directory là `dist`.
-5.  Nhấn **"Deploy site"**.
-
-> 💡 **Lưu ý về Routing:** Dự án đã có sẵn file `vercel.json` và `_redirects` để đảm bảo khi bạn load lại trang hoặc truy cập trực tiếp các đường dẫn (ví dụ: `/history`), hệ thống sẽ không bị lỗi 404.
-
----
-
-> 💡 **Gợi ý:** Nếu gặp lỗi sau khi pull code mới, hãy chạy lại `npm install` trước khi `npm run dev`.
-
