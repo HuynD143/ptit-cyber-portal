@@ -6,6 +6,34 @@
 
 Xem chi tiết trong thư mục system_flow
 
+---
+
+## 📂 Cấu trúc thư mục (Folder Structure)
+
+```text
+📦 ptit-cyber-portal
+├── public/                # Tài nguyên tĩnh 
+├── src/                   # Thư mục mã nguồn chính của ứng dụng
+│   ├── assets/            # Các tệp định dạng CSS và tài nguyên đa phương tiện
+│   ├── components/        # Các UI component tái sử dụng (Layout, UI, Utils...)
+│   ├── data/              # Dữ liệu mẫu (Mock data) 
+│   ├── pages/             # Chứa toàn bộ trang giao diện (Routing Views)
+│   │   ├── Auth/          # Trang Đăng nhập, Đăng ký, Quên mật khẩu
+│   │   ├── Challenges/    # Bảng danh sách bài tập (Trang chủ)
+│   │   ├── CTFCompetition/# Tính năng giải đấu Attack-Defense 
+│   │   ├── CTFJeopardy/   # Dashboard và tính năng giải đấu Jeopardy
+│   │   ├── Guide/         # Trang Hướng dẫn sử dụng
+│   │   ├── Leaderboard/   # Bảng xếp hạng hệ thống tổng quát
+│   │   ├── Profile/       # Trang hồ sơ cá nhân, lịch sử khóa học
+│   │   ├── SystemLogs/    # Trang theo dõi Nhật ký hệ thống (System Logs)
+│   │   └── Terminal/      # Giao diện giả lập môi trường SSH Web Terminal
+│   ├── system_flow/       # Diagram phân tích luồng hoạt động
+│   ├── App.jsx            # Tệp cấu hình phân luồng các Route chính yếu
+│   └── main.jsx           # Tệp gốc khởi chạy ứng dụng React
+├── vercel.json            # Cấu hình luật chuyển hướng để deploy SPA lên Vercel
+└── vite.config.js         # Cấu hình môi trường dev server và build từ Vite
+```
+
 ## Yêu cầu hệ thống
 
 | Công cụ | Phiên bản tối thiểu |
