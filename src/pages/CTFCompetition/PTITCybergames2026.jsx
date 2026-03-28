@@ -56,7 +56,7 @@ const PTITCybergames2026 = () => {
             <Shield color="var(--primary)" size={32} />
             PTIT Cybergames 2026
           </h1>
-          <p style={{ color: 'var(--text-muted)', margin: 0 }}>Vòng 2: Khai thác và Vá lỗi dịch vụ Nội bộ (Tick Rate: 60s)</p>
+          <p style={{ color: 'var(--text-muted)', margin: 0 }}>Vòng Chung Kết: Đấu trường Khai thác Đa chiều và Vá lỗi Ứng dụng Web (Tick Rate: 120s)</p>
         </div>
         <div style={{ background: 'var(--bg-surface-elevated)', padding: '1rem 2rem', borderRadius: 'var(--radius-lg)', border: '1px solid rgba(148,163,184,0.1)', textAlign: 'center' }}>
           <p style={{ margin: '0 0 0.5rem', color: 'var(--text-soft)', fontSize: '0.9rem', fontWeight: 'bold' }}>TGBB (Thời gian bắt đầu)</p>

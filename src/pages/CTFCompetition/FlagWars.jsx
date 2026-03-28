@@ -56,7 +56,7 @@ const FlagWars = () => {
             <Shield color="var(--primary)" size={32} />
             Flag Wars
           </h1>
-          <p style={{ color: 'var(--text-muted)', margin: 0 }}>Vòng 2: Khai thác và Vá lỗi dịch vụ Nội bộ (Tick Rate: 60s)</p>
+          <p style={{ color: 'var(--text-muted)', margin: 0 }}>Cuộc chiến sinh tử: Bảo vệ Server Website khỏi làn sóng chèn Payload (Tick Rate: 30s)</p>
         </div>
         <div style={{ background: 'var(--bg-surface-elevated)', padding: '1rem 2rem', borderRadius: 'var(--radius-lg)', border: '1px solid rgba(148,163,184,0.1)', textAlign: 'center' }}>
           <p style={{ margin: '0 0 0.5rem', color: 'var(--text-soft)', fontSize: '0.9rem', fontWeight: 'bold' }}>TGBB (Thời gian bắt đầu)</p>
