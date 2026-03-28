@@ -3,13 +3,27 @@ export const attackDefenseTeams = [
   { rank: 2, name: '0xDeadBeef', ip: '10.0.1.11', score: 2350, status: 'up' },
   { rank: 3, name: 'PTIT_Pwners (Bạn)', ip: '10.0.1.12', score: 2100, status: 'up', isMe: true },
   { rank: 4, name: 'NullPointers', ip: '10.0.1.13', score: 1800, status: 'down' },
-  { rank: 5, name: 'SecKitten', ip: '10.0.1.14', score: 1550, status: 'corrupt' }
+  { rank: 5, name: 'SecKitten', ip: '10.0.1.14', score: 1550, status: 'corrupt' },
+  { rank: 6, name: 'ByteMe', ip: '10.0.1.15', score: 1400, status: 'up' },
+  { rank: 7, name: 'KernelPanic', ip: '10.0.1.16', score: 1200, status: 'down' },
+  { rank: 8, name: 'FlagHunters', ip: '10.0.1.17', score: 1100, status: 'up' },
+  { rank: 9, name: 'ScriptKiddies', ip: '10.0.1.18', score: 950, status: 'corrupt' },
+  { rank: 10, name: 'DogeSec', ip: '10.0.1.19', score: 800, status: 'up' },
+  { rank: 11, name: 'WhiteHats', ip: '10.0.1.20', score: 500, status: 'down' },
+  { rank: 12, name: 'L33tH4x0rs', ip: '10.0.1.21', score: 250, status: 'up' }
 ];
 
 export const recentLogs = [
   { id: 1, type: 'victory', message: 'Đội bạn đã khai thác thành công flag của NullPointers (+50đ)' },
   { id: 2, type: 'warning', message: 'Dịch vụ Web của bạn đang trả về mã lỗi 500 (Corrupt SLA)' },
   { id: 3, type: 'defense_failed', message: '0xDeadBeef đã lấy mất flag của bạn (-50đ)' },
+  { id: 4, type: 'victory', message: 'Đội bạn đã khai thác thành công flag của WhiteHats (+50đ)' },
+  { id: 5, type: 'warning', message: 'Dịch vụ SSH của bạn không thể truy cập (Corrupt SLA)' },
+  { id: 6, type: 'defense_failed', message: 'CyberWarriors đã lấy mất flag của bạn (-50đ)' },
+  { id: 7, type: 'victory', message: 'Đội bạn đã khai thác thành công flag của DogeSec (+50đ)' },
+  { id: 8, type: 'victory', message: 'Đội bạn đã khai thác thành công flag của KernelPanic (+50đ)' },
+  { id: 9, type: 'defense_failed', message: 'SecKitten đã đẩy payload RCE thành công (-50đ)' },
+  { id: 10, type: 'warning', message: 'Máy chủ Database của bạn đang bị Tấn công từ chối dịch vụ (DDoS)' }
 ];
 
 export const competitions = [

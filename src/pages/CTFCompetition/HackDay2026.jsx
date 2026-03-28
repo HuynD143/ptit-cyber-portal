@@ -74,9 +74,10 @@ const HackDay2026 = () => {
           {/* Main Board */}
           <div style={{ background: 'var(--bg-surface-elevated)', borderRadius: 'var(--radius-lg)', padding: '2rem', border: '1px solid rgba(148,163,184,0.1)', boxShadow: 'var(--shadow-soft)' }}>
             <h2 style={{ margin: '0 0 1.5rem', fontSize: '1.3rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Target size={22} color="var(--primary)" /> Danh sách Mục tiêu (Targets)
+              <Target size={22} color="var(--primary)" /> Bảng xếp hạng
             </h2>
-            <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
+            <div style={{ maxHeight: '350px', overflowY: 'auto', paddingRight: '0.5rem' }}>
+              <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
               <thead>
                 <tr style={{ background: 'rgba(255,255,255,0.03)', borderBottom: '1px solid rgba(148,163,184,0.1)' }}>
                   <th style={{ padding: '1rem', color: 'var(--text-soft)' }}>#</th>
@@ -102,7 +103,8 @@ const HackDay2026 = () => {
                   </tr>
                 ))}
               </tbody>
-            </table>
+              </table>
+            </div>
           </div>
 
           {/* Quick Logs */}
@@ -110,7 +112,7 @@ const HackDay2026 = () => {
             <h2 style={{ margin: '0 0 1.5rem', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
               <Activity size={20} color="var(--primary)" /> Log Tấn công/Phòng thủ gần đây
             </h2>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', fontFamily: 'monospace', fontSize: '0.9rem' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', fontFamily: 'monospace', fontSize: '0.9rem', maxHeight: '300px', overflowY: 'auto', paddingRight: '0.5rem' }}>
               {recentLogs.map(log => {
                 let colorBase, title;
                 if (log.type === 'victory') { colorBase = '#22c55e'; title = '[VICTORY]'; }
