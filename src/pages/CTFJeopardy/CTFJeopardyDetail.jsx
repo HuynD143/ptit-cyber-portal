@@ -63,7 +63,7 @@ const CTFJeopardyDetail = () => {
         onMouseOut={e => e.currentTarget.style.color = 'var(--text-muted)'}
       >
         <ArrowLeft size={18} />
-        Quay lại CTF Jeopardy
+        Quay lại
       </button>
 
       {/* Main Container */}
