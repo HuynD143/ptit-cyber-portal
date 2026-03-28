@@ -7,8 +7,9 @@ const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [filterDifficulty, setFilterDifficulty] = React.useState('Tất cả độ khó');
   const [filterSubCat, setFilterSubCat] = React.useState('Tất cả chủ đề');
+  const [filterCourse, setFilterCourse] = React.useState('Học kỳ 2 năm học 2025-2026');
   const [searchQuery, setSearchQuery] = React.useState('');
-  
+
   const currentPage = parseInt(searchParams.get('page') || '1', 10);
   const itemsPerPage = 12;
 
@@ -22,7 +23,8 @@ const Home = () => {
     const matchSearch = c.title.toLowerCase().includes(searchQuery.toLowerCase());
     const matchDiff = filterDifficulty === 'Tất cả độ khó' || c.difficulty === filterDifficulty;
     const matchSubCat = filterSubCat === 'Tất cả chủ đề' || c.tags.includes(filterSubCat);
-    return matchSearch && matchDiff && matchSubCat;
+    const matchCourse = filterCourse === c.term || filterCourse === c.course;
+    return matchSearch && matchDiff && matchSubCat && matchCourse;
   });
 
   // Pagination Logic
@@ -49,32 +51,37 @@ const Home = () => {
 
   return (
     <div style={{ padding: '2rem', maxWidth: '1400px', margin: '0 auto' }}>
-      
+
       {/* HEADER & FILTERS */}
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2.5rem' }}>
         <h2 style={{ margin: 0 }}>Danh sách bài tập</h2>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-          <select style={{ width: '350px', padding: '10px 15px' }}>
+          <select 
+            value={filterCourse}
+            onChange={(e) => { setFilterCourse(e.target.value); setSearchParams({ page: '1' }); }}
+            style={{ width: '350px', padding: '10px 15px' }}
+          >
             <option>Học kỳ 2 năm học 2025-2026</option>
             <option>An toàn và bảo mật hệ thống thông tin - INT1303-19</option>
+            <option>Kỹ thuật mật mã - KTPM-02</option>
           </select>
-          <input 
-            type="text" 
-            placeholder="Nhập từ khóa..." 
+          <input
+            type="text"
+            placeholder="Nhập từ khóa..."
             value={searchQuery}
-            onChange={(e) => { setSearchQuery(e.target.value); setSearchParams({page: '1'}); }}
-            style={{ width: '250px' }} 
+            onChange={(e) => { setSearchQuery(e.target.value); setSearchParams({ page: '1' }); }}
+            style={{ width: '250px' }}
           />
-          <select 
+          <select
             value={filterSubCat}
-            onChange={(e) => { setFilterSubCat(e.target.value); setSearchParams({page: '1'}); }}
+            onChange={(e) => { setFilterSubCat(e.target.value); setSearchParams({ page: '1' }); }}
             style={{ width: '150px' }}
           >
             {allSubCategories.map(cat => <option key={cat} value={cat}>{cat}</option>)}
           </select>
-          <select 
+          <select
             value={filterDifficulty}
-            onChange={(e) => { setFilterDifficulty(e.target.value); setSearchParams({page: '1'}); }}
+            onChange={(e) => { setFilterDifficulty(e.target.value); setSearchParams({ page: '1' }); }}
             style={{ width: '150px' }}
           >
             <option>Tất cả độ khó</option>
@@ -86,11 +93,11 @@ const Home = () => {
       </div>
 
       {/* GRID LAYOUT (3 columns) */}
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))', 
-        gap: '1.5rem', 
-        marginBottom: '3rem' 
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(380px, 1fr))',
+        gap: '1.5rem',
+        marginBottom: '3rem'
       }}>
         {currentItems.map(c => (
           <Link to={`/challenge/${c.id}`} key={c.id} style={{ textDecoration: 'none' }}>
@@ -107,20 +114,20 @@ const Home = () => {
               flexDirection: 'column',
               justifyContent: 'space-between'
             }}
-            onMouseOver={e => e.currentTarget.style.transform = 'translateY(-2px)'}
-            onMouseOut={e => e.currentTarget.style.transform = 'none'}
+              onMouseOver={e => e.currentTarget.style.transform = 'translateY(-2px)'}
+              onMouseOut={e => e.currentTarget.style.transform = 'none'}
             >
               <div>
                 {/* Top row: tags and status */}
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.5rem' }}>
                   <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                     {c.tags.map(tag => (
-                      <span key={tag} style={{ 
-                        background: 'rgba(168, 85, 247, 0.1)', 
-                        color: '#d8b4fe', 
-                        padding: '4px 10px', 
-                        borderRadius: '6px', 
-                        fontSize: '0.75rem', 
+                      <span key={tag} style={{
+                        background: 'rgba(168, 85, 247, 0.1)',
+                        color: '#d8b4fe',
+                        padding: '4px 10px',
+                        borderRadius: '6px',
+                        fontSize: '0.75rem',
                         fontWeight: '700',
                         letterSpacing: '0.05em',
                         textTransform: 'uppercase'
@@ -142,10 +149,10 @@ const Home = () => {
 
               {/* Bottom row: Difficulty (Removed points) */}
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <div style={{ 
-                  width: '8px', 
-                  height: '8px', 
-                  borderRadius: '50%', 
+                <div style={{
+                  width: '8px',
+                  height: '8px',
+                  borderRadius: '50%',
                   background: getDifficultyColor(c.difficulty),
                   boxShadow: `0 0 8px ${getDifficultyColor(c.difficulty)}`
                 }} />
@@ -161,12 +168,12 @@ const Home = () => {
       {/* PAGINATION */}
       {totalPages > 1 && (
         <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
-          <button 
+          <button
             disabled={currentPage === 1}
             onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
-            style={{ 
-              padding: '8px 16px', 
-              background: 'var(--bg-surface)', 
+            style={{
+              padding: '8px 16px',
+              background: 'var(--bg-surface)',
               border: '1px solid rgba(148,163,184,0.2)',
               color: currentPage === 1 ? 'var(--text-muted)' : 'var(--text-main)',
               cursor: currentPage === 1 ? 'not-allowed' : 'pointer',
@@ -175,7 +182,7 @@ const Home = () => {
           >
             Trước
           </button>
-          
+
           {[...Array(totalPages)].map((_, idx) => (
             <button
               key={idx + 1}
@@ -194,12 +201,12 @@ const Home = () => {
             </button>
           ))}
 
-          <button 
+          <button
             disabled={currentPage === totalPages}
             onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
-            style={{ 
-              padding: '8px 16px', 
-              background: 'var(--bg-surface)', 
+            style={{
+              padding: '8px 16px',
+              background: 'var(--bg-surface)',
               border: '1px solid rgba(148,163,184,0.2)',
               color: currentPage === totalPages ? 'var(--text-muted)' : 'var(--text-main)',
               cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',

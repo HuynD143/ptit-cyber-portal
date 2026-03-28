@@ -15,10 +15,10 @@ const Courses = () => {
             <tr className="enrollclass__table__head">
               <th className="text--middle">STT</th>
               <th>Môn học</th>
-              <th>Nhóm</th>
+              <th>Mã môn</th>
               <th>Học kỳ</th>
               <th>Trạng thái</th>
-              <th className="text--middle" style={{ textAlign: 'center' }}>Kết quả</th>
+
             </tr>
           </thead>
           <tbody>
@@ -29,9 +29,7 @@ const Courses = () => {
                 <td>{c.group}</td>
                 <td style={{ color: 'var(--text-muted)' }}>{c.term}</td>
                 <td><span className="status-ac" style={{ color: '#00cc66' }}>{c.status}</span></td>
-                <td className="text--middle" style={{ textAlign: 'center' }}>
-                  <Link to="/history" className="link--red" style={{ color: 'var(--primary)', fontWeight: 'bold' }}>Kết quả</Link>
-                </td>
+
               </tr>
             ))}
           </tbody>

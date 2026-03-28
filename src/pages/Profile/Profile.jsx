@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { userProfileDetails, enrolledClasses } from '../../data/profileData';
+import { userProfileDetails } from '../../data/profileData';
+import { myCourses } from '../../data/coursesData';
 
 const Profile = () => {
   const [activeTab, setActiveTab] = useState('overview');
@@ -124,23 +125,20 @@ const Profile = () => {
                   <tr style={{ background: 'rgba(220, 38, 38, 0.08)', borderBottom: '1px solid rgba(220, 38, 38, 0.2)' }}>
                     <th style={{ padding: '1rem', color: 'var(--text-soft)', fontWeight: '600', width: '50px', textAlign: 'center' }}>STT</th>
                     <th style={{ padding: '1rem', color: 'var(--text-soft)', fontWeight: '600' }}>Môn học</th>
-                    <th style={{ padding: '1rem', color: 'var(--text-soft)', fontWeight: '600' }}>Nhóm</th>
+                    <th style={{ padding: '1rem', color: 'var(--text-soft)', fontWeight: '600' }}>Mã môn</th>
                     <th style={{ padding: '1rem', color: 'var(--text-soft)', fontWeight: '600' }}>Học kỳ</th>
                     <th style={{ padding: '1rem', color: 'var(--text-soft)', fontWeight: '600' }}>Trạng thái</th>
-                    <th style={{ padding: '1rem', color: 'var(--primary)', fontWeight: '600' }}>Kết quả</th>
+
                   </tr>
                 </thead>
                 <tbody>
-                  {enrolledClasses.map(c => (
+                  {myCourses.map(c => (
                     <tr key={c.stt} style={{ borderBottom: '1px solid rgba(148,163,184,0.1)', transition: 'background 0.2s' }} onMouseOver={e => e.currentTarget.style.background = 'rgba(255,255,255,0.02)'} onMouseOut={e => e.currentTarget.style.background = 'transparent'}>
                       <td style={{ padding: '1rem', textAlign: 'center', color: 'var(--text-muted)' }}>{c.stt}</td>
                       <td style={{ padding: '1rem', fontWeight: '500' }}>{c.subject}</td>
                       <td style={{ padding: '1rem', color: 'var(--text-muted)' }}>{c.group}</td>
                       <td style={{ padding: '1rem', color: 'var(--text-muted)', lineHeight: '1.4' }} dangerouslySetInnerHTML={{ __html: c.term.replace(' năm học', '<br/>học') }} />
                       <td style={{ padding: '1rem', color: 'var(--text-muted)' }}>{c.status}</td>
-                      <td style={{ padding: '1rem', color: 'var(--primary)', fontWeight: 'bold', cursor: 'pointer' }}>
-                        <Link to={c.resultLink} style={{ color: 'inherit', textDecoration: 'none' }}><span style={{ borderBottom: '1px dashed var(--primary)' }}>Kết quả</span></Link>
-                      </td>
                     </tr>
                   ))}
                 </tbody>
