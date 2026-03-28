@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { userProfileDetails } from '../../data/profileData';
 
 const SettingsSidebar = ({ active }) => (
   // Identical sidebar as Guide
@@ -15,15 +16,15 @@ const SettingsSidebar = ({ active }) => (
 
 const EditProfile = () => {
   const [profile, setProfile] = useState({
-    name: 'Đặng Ngọc Huy',
-    email: 'b23dckh056@stu.ptit.edu.vn',
-    studentId: 'B23DCKH056',
-    clazz: 'D23CQKH01-N',
-    phone: '0987654321',
-    cmnd: '001099012345'
+    name: userProfileDetails.fullName,
+    email: userProfileDetails.email,
+    studentId: userProfileDetails.studentId,
+    clazz: userProfileDetails.clazz,
+    phone: userProfileDetails.phone,
+    cmnd: userProfileDetails.idCard
   });
 
-  const [avatar, setAvatar] = useState(localStorage.getItem('user_avatar') || 'https://seclab.ptit.edu.vn/2020/images/avt.png');
+  const [avatar, setAvatar] = useState(localStorage.getItem('user_avatar') || userProfileDetails.avatarDefault);
   const fileInputRef = React.useRef(null);
 
   const handleAvatarChange = (e) => {
