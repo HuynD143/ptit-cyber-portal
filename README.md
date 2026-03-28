@@ -2,7 +2,7 @@
 
 **🌐 Live Demo:** [https://ptit-cyber-portal.vercel.app]
 
-## Luồng hệ thống
+## Luồng hệ thống (System Flow)
 
 Xem chi tiết trong thư mục system_flow
 
